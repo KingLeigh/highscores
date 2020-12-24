@@ -22,7 +22,7 @@ export default class InputScore extends Component {
 
   componentDidMount() {
     // Populate the user states
-    axios.get('/users/')
+    axios.get('/api/users/')
       .then(response => {
         if (response.data.length > 0) {
           this.setState({
@@ -36,7 +36,7 @@ export default class InputScore extends Component {
       })
 
     // Populate the event states
-    axios.get('/events/')
+    axios.get('/api/events/')
     .then(response => {
       if (response.data.length > 0) {
         this.setState({
@@ -84,7 +84,7 @@ export default class InputScore extends Component {
 
     console.log(score);
 
-    axios.post('/scores/add', score)
+    axios.post('/api/scores/add', score)
       .then(res => console.log(res.data));
 
     this.setState({

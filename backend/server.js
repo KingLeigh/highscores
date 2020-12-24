@@ -29,9 +29,9 @@ const usersRouter = require('./routes/users');
 const eventsRouter = require('./routes/events');
 const scoresRouter = require('./routes/scores');
 
-app.use('/users', usersRouter);
-app.use('/events', eventsRouter);
-app.use('/scores', scoresRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/events', eventsRouter);
+app.use('/api/scores', scoresRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);

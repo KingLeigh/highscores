@@ -39,7 +39,7 @@ export default class CreateUser extends Component {
 
     // TODO: Pull out base url as an arg.
     // TODO: Handle errors for creating user
-    axios.post('/users/add', user)
+    axios.post('/api/users/add', user)
       .then(res => console.log(res.data));
 
     this.setState({
