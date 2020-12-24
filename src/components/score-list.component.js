@@ -64,7 +64,7 @@ export default class ScoreList extends Component {
   componentDidMount() {
     // TODO: Consider a slower update rate for new Users/Events?
     // Populate the user map
-    axios.get('http://localhost:5000/users/')
+    axios.get('/users/')
       .then(response => {
         if (response.data.length > 0) {
           const newUserMap = {};
@@ -79,7 +79,7 @@ export default class ScoreList extends Component {
       });
 
       // Populate the events map
-      axios.get('http://localhost:5000/events/')
+      axios.get('/events/')
       .then(response => {
         if (response.data.length > 0) {
           const newEventMap = {};
@@ -106,7 +106,7 @@ export default class ScoreList extends Component {
 
   updateScores() {
     // Fetch the scores object
-    axios.get('http://localhost:5000/scores/')
+    axios.get('/scores/')
       .then(response => {
         this.setState({ 
           scores: response.data,

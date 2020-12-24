@@ -16,7 +16,7 @@ export default class EventPicker extends Component {
 
   componentDidMount() {
     // Populate the event states
-    axios.get('http://localhost:5000/events/')
+    axios.get('/events/')
     .then(response => {
       if (response.data.length > 0) {
         this.setState({

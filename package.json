@@ -51,5 +51,6 @@
   "main": "index.js",
   "devDependencies": {},
   "author": "leighherbert",
-  "license": "ISC"
+  "license": "ISC",
+  "proxy": "http://localhost:5000"
 }

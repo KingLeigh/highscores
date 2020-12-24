@@ -39,7 +39,7 @@ export default class CreateEvent extends Component {
 
     // TODO: Pull out base url as an arg.
     // TODO: Handle errors for creating event
-    axios.post('http://localhost:5000/events/add', event)
+    axios.post('/events/add', event)
       .then(res => console.log(res.data));
 
     this.setState({
