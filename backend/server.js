@@ -26,10 +26,12 @@ connection.once('open', () => {
 const usersRouter = require('./routes/users');
 const eventsRouter = require('./routes/events');
 const scoresRouter = require('./routes/scores');
+const competitionsRouter = require('./routes/competitions');
 
 app.use('/api/users', usersRouter);
 app.use('/api/events', eventsRouter);
 app.use('/api/scores', scoresRouter);
+app.use('/api/competitions', competitionsRouter);
 
 if (process.env.NODE_ENV === "production"){
   app.get("*", (req, res) => {
