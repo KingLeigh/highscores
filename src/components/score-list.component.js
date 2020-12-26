@@ -41,7 +41,8 @@ export default class ScoreList extends Component {
     this.updateScores = this.updateScores.bind(this); 
     this.sortScoresFn = this.sortScoresFn.bind(this);
 
-    this.updateFrequency = 10000;
+    // Update the board every 5 minutes. Consider changing this post-testing.
+    this.updateFrequency = 5 * 60 * 1000;
     this.leaderboardSize = 5;
     this.totalItems = this.isLeaderboard ? this.leaderboardSize : Number.MAX_VALUE;
 
