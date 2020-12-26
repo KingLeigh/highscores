@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route} from "react-router-dom";
 import Navbar from "./components/navbar.component"
 import ScoreList from "./components/score-list.component";
 import InputScore from "./components/input-score.component";
+import CreateCompetition from "./components/create-competition.component";
 import CreateUser from "./components/create-user.component";
 import CreateEvent from "./components/create-event.component";
 import EventPicker from "./components/event-picker.component";
@@ -24,7 +25,8 @@ function App() {
       )} />
       <Route path="/record" component={InputScore} />
       <Route path="/user" component={CreateUser} />
-      <Route path="/event" component={CreateEvent} />      
+      <Route path="/event" component={CreateEvent} />
+      <Route path="/new-competition" component={CreateCompetition} />      
       </div>
     </Router>
   );
