@@ -9,6 +9,9 @@ import CreateCompetition from "./components/create-competition.component";
 import CreateUser from "./components/create-user.component";
 import CreateEvent from "./components/create-event.component";
 import EventPicker from "./components/event-picker.component";
+import CompetitionPicker from "./components/competition-picker.component";
+
+// TODO: Hide the navbar on screen it's not needed.
 
 function App() {
   return (
@@ -26,7 +29,8 @@ function App() {
       <Route path="/record" component={InputScore} />
       <Route path="/user" component={CreateUser} />
       <Route path="/event" component={CreateEvent} />
-      <Route path="/new-competition" component={CreateCompetition} />      
+      <Route path="/new-competition" component={CreateCompetition} />
+      <Route path="/competition" component={CompetitionPicker} />      
       </div>
     </Router>
   );
