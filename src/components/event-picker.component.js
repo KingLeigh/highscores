@@ -9,18 +9,27 @@ export default class EventPicker extends Component {
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-      eventcode: '',
+      eventId: '',
       eventObj: [],
     }
   }
 
   componentDidMount() {
+    const compId = window.sessionStorage.getItem("compId");
+    console.log("Event picker, compId = " + compId);
+    const req = {
+      competition: compId
+    };
+
+    console.log(req);
+
     // Populate the event states
-    axios.get('/api/events/')
+    axios.get('/api/events', {params: req})
     .then(response => {
+      console.log("XYZ EVENT RESPONSE");
       if (response.data.length > 0) {
         this.setState({
-          eventcode: response.data[0].eventcode,
+          eventId: response.data[0]._id,
           eventObj: response.data,
         })
       }
@@ -32,14 +41,14 @@ export default class EventPicker extends Component {
 
   onChangeEventcode(e) {
     this.setState({
-      eventcode: e.target.value
+      eventId: e.target.value
     })   
   }
 
   onSubmit(e) {
     e.preventDefault();
 
-    window.location = '/leaderboard/' + this.state.eventcode;
+    window.location = '/leaderboard/' + this.state.eventId;
   }
 
   render() {
@@ -52,13 +61,13 @@ export default class EventPicker extends Component {
           <select ref="userInput"
               required
               className="form-control"
-              value={this.state.eventcode}
+              value={this.state.eventId}
               onChange={this.onChangeEventcode}>
               {
                 this.state.eventObj.map(function(event) {
                   return <option 
-                    key={event.eventcode}
-                    value={event.eventcode}>{event.name}
+                    key={event._id}
+                    value={event._id}>{event.name}
                     </option>;
                 })
               }

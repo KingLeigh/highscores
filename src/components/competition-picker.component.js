@@ -38,7 +38,7 @@ export default class CreateCompetition extends Component {
     if (data !== "") {
       console.log("Found id" + data._id);
       window.sessionStorage.setItem("compId", data._id);
-      window.location = '/event';
+      window.location = '/events';
     } else {
       console.log("No competition found.");
     }

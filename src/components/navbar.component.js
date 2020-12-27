@@ -13,6 +13,9 @@ export default class Navbar extends Component {
             <Link to="/recent" className="nav-link">Recent</Link>
             </li>
             <li className="navbar-item">
+            <Link to="/events" className="nav-link">Pick Event</Link>
+            </li>
+            <li className="navbar-item">
             <Link to="/record" className="nav-link">Add Score</Link>
             </li>
             <li className="navbar-item">

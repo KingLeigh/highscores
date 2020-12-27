@@ -1,8 +1,12 @@
 const router = require('express').Router();
-let Event = require('../models/event.model');
+const Event = require('../models/event.model');
+const ObjectId = require('mongoose').Types.ObjectId;
 
 router.route('/').get((req, res) => {
-  Event.find().sort('name')
+  console.log("XYZ comp: " + req.query.competition);
+  Event.find({
+    "competition": new ObjectId(req.query.competition)
+  }).sort('name')
     .then(events => res.json(events))
     .catch(err => res.status(400).json('Error: ' + err));
 });
