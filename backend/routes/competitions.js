@@ -21,7 +21,7 @@ router.route('/add').post((req, res) => {
   const newCompetition = new Competition({competitioncode, name});
 
   newCompetition.save()
-    .then(() => res.json(`Competition ${competitioncode} added!`))
+    .then(() => res.json(newCompetition))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 

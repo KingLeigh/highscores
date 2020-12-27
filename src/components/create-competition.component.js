@@ -24,8 +24,9 @@ export default class CreateCompetition extends Component {
   }  
 
   onChangeCompetitioncode(e) {
+    const competitionCode = e.target.value.toUpperCase();
     this.setState({
-      competitioncode: e.target.value
+      competitioncode: competitionCode
     })
   }
 
@@ -36,7 +37,7 @@ export default class CreateCompetition extends Component {
   }  
 
   onSubmit(e) {
-    e.prcompetitionDefault();
+    e.preventDefault();
 
     const competition = {
       competitioncode: this.state.competitioncode,
@@ -45,17 +46,28 @@ export default class CreateCompetition extends Component {
 
     console.log(competition);
 
-    // TODO: Handle errors for creating competition
     axios.post('/api/competitions/add', competition)
-      .then(res => console.log(res.data));
+      .then(res => this.handleCreateResponse(res.data))
+      .catch((error) => {
+        console.log(error);
+        alert("Unable to create new competition.");
+      })
 
     this.setState({
       competitioncode: '',
       name: '',
     })
-
-    // TODO: Redirect to the Create Event page for this competition, once we have that feature.
   }
+
+  handleCreateResponse(data) {
+    if (data !== "") {
+      console.log("Found id" + data._id);
+      window.sessionStorage.setItem("compId", data._id);
+      window.location = '/event';
+    } else {
+      console.log("No competition found.");
+    }
+  }  
 
   // TODO: Add validation for the competition code.
   render() {
