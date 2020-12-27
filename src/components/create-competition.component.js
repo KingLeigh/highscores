@@ -15,6 +15,14 @@ export default class CreateCompetition extends Component {
     }
   }
 
+  componentDidMount() {
+    document.getElementsByClassName("navbar-collapse")[0].style.visibility = 'hidden';
+  }
+
+  componentWillUnmount() {
+    document.getElementsByClassName("navbar-collapse")[0].style.visibility = 'visible';
+  }  
+
   onChangeCompetitioncode(e) {
     this.setState({
       competitioncode: e.target.value

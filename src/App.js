@@ -19,7 +19,8 @@ function App() {
       <div className="container">
       <Navbar />
       <br/>
-      <Route path="/" exact component={EventPicker} />
+      <Route path="/" exact component={CompetitionPicker} />
+      <Route path="/events" exact component={EventPicker} />
       <Route path="/leaderboard/:id"  render={(props) => (
         <ScoreList {...props} listTitle="Leaderboard"/>
       )} />      

@@ -13,6 +13,14 @@ export default class CreateCompetition extends Component {
     }
   }
 
+  componentDidMount() {
+    document.getElementsByClassName("navbar-collapse")[0].style.visibility = 'hidden';
+  }
+
+  componentWillUnmount() {
+    document.getElementsByClassName("navbar-collapse")[0].style.visibility = 'visible';
+  }
+
   onChangeCompetitioncode(e) {
     const competitionCode = e.target.value.toUpperCase();
     this.setState({
@@ -29,6 +37,7 @@ export default class CreateCompetition extends Component {
   handleLookupResponse(data) {
     if (data != "") {
       console.log("Found id" + data._id);
+      // Can redirect to the competition version of the main pages now!
     } else {
       console.log("No competition found.");
     }
