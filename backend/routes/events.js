@@ -2,6 +2,7 @@ const router = require('express').Router();
 const Event = require('../models/event.model');
 const ObjectId = require('mongoose').Types.ObjectId;
 
+// TODO: Move this to a more specific route. This should be the single-event getter.
 router.route('/:comp').get((req, res) => {
   console.log("XYZ comp: " + req.params.comp);
   Event.find({

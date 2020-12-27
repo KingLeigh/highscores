@@ -107,7 +107,7 @@ export default class ScoreList extends Component {
 
   updateScores() {
     // Fetch the scores object
-    axios.get('/api/scores/')
+    axios.get('/api/scores/comp/' + window.sessionStorage.getItem("compId"))
       .then(response => {
         this.setState({ 
           scores: response.data,

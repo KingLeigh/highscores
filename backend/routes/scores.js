@@ -1,23 +1,28 @@
 const router = require('express').Router();
 let Score = require('../models/score.model');
+const ObjectId = require('mongoose').Types.ObjectId;
 
-router.route('/').get((req, res) => {
-  Score.find()
+router.route('/comp/:comp').get((req, res) => {
+  Score.find({
+    "competition": new ObjectId(req.params.comp)
+  })
     .then(scores => res.json(scores))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/add').post((req, res) => {
-  const usercode = req.body.usercode;
-  const eventcode = req.body.eventcode;
+  const userId = req.body.userId;
+  const eventId = req.body.eventId;
   const score = Number(req.body.score);
   const date = Date.parse(req.body.date);
+  const competition = req.body.competition; 
 
   const newScore = new Score({
-    usercode,
-    eventcode,
+    userId,
+    eventId,
     score,
     date,
+    competition
   });
 
   newScore.save()
@@ -40,8 +45,8 @@ router.route('/:id').delete((req, res) => {
 router.route('/update/:id').post((req, res) => {
   Score.findById(req.params.id)
     .then(score => {
-      score.usercode = req.body.usercode;
-      score.eventcode = req.body.eventcode;
+      score.userId = req.body.userId;
+      score.eventId = req.body.eventId;
       score.score = Number(req.body.score);
       score.date = Date.parse(req.body.date);
 

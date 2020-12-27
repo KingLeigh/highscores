@@ -11,22 +11,27 @@ export default class InputScore extends Component {
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-      usercode: '',
-      eventcode: '',
+      userId: '',
+      eventId: '',
       score: 0,
       date: new Date(),
       userObj: [],
       eventObj: [],
+      compId: '',
     }
   }
 
   componentDidMount() {
+    const compId = window.sessionStorage.getItem("compId");
+    this.setState({
+      compId: compId
+    });
     // Populate the user states
-    axios.get('/api/users/')
+    axios.get('/api/users/' + compId)
       .then(response => {
         if (response.data.length > 0) {
           this.setState({
-            usercode: response.data[0].usercode,
+            userId: response.data[0]._id,
             userObj: response.data,
           })
         }
@@ -36,11 +41,11 @@ export default class InputScore extends Component {
       })
 
     // Populate the event states
-    axios.get('/api/events/')
+    axios.get('/api/events/' + compId)
     .then(response => {
       if (response.data.length > 0) {
         this.setState({
-          eventcode: response.data[0].eventcode,
+          eventId: response.data[0]._id,
           eventObj: response.data,
         })
       }
@@ -52,7 +57,7 @@ export default class InputScore extends Component {
 
   onChangeUsercode(e) {
     this.setState({
-      usercode: e.target.value
+      userId: e.target.value
     })
 
     // TODO: Retrieve user-event state.
@@ -60,7 +65,7 @@ export default class InputScore extends Component {
 
   onChangeEventcode(e) {
     this.setState({
-      eventcode: e.target.value
+      eventId: e.target.value
     })
 
     // TODO: Retrieve user-event state.    
@@ -76,9 +81,10 @@ export default class InputScore extends Component {
     e.preventDefault();
 
     const score = {
-      usercode: this.state.usercode,
-      eventcode: this.state.eventcode,
+      userId: this.state.userId,
+      eventId: this.state.eventId,
       score: this.state.score,
+      competition: this.state.compId,
       date: new Date()
     }
 
@@ -102,13 +108,13 @@ export default class InputScore extends Component {
           <select ref="userInput"
               required
               className="form-control"
-              value={this.state.eventcode}
+              value={this.state.eventId}
               onChange={this.onChangeEventcode}>
               {
                 this.state.eventObj.map(function(event) {
                   return <option 
-                    key={event.eventcode}
-                    value={event.eventcode}>{event.name}
+                    key={event._id}
+                    value={event._id}>{event.name}
                     </option>;
                 })
               }
@@ -119,13 +125,13 @@ export default class InputScore extends Component {
           <select ref="userInput"
               required
               className="form-control"
-              value={this.state.usercode}
+              value={this.state.userId}
               onChange={this.onChangeUsercode}>
               {
                 this.state.userObj.map(function(user) {
                   return <option 
-                    key={user.usercode}
-                    value={user.usercode}>{user.name}
+                    key={user._id}
+                    value={user._id}>{user.name}
                     </option>;
                 })
               }
