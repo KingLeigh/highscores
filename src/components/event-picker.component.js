@@ -16,17 +16,10 @@ export default class EventPicker extends Component {
 
   componentDidMount() {
     const compId = window.sessionStorage.getItem("compId");
-    console.log("Event picker, compId = " + compId);
-    const req = {
-      competition: compId
-    };
-
-    console.log(req);
 
     // Populate the event states
-    axios.get('/api/events', {params: req})
+    axios.get('/api/events/' + compId)
     .then(response => {
-      console.log("XYZ EVENT RESPONSE");
       if (response.data.length > 0) {
         this.setState({
           eventId: response.data[0]._id,
