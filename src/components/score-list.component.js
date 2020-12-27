@@ -8,7 +8,7 @@ const RecentScore = props => (
     <td>{props.score.username}</td>
     <td>{props.score.eventname}</td>
     <td>{props.score.score}</td>
-    <td>{props.score.date.toLocaleString()}</td>
+    <td>{props.score.date}</td>
     <td>
       <a href="#" onClick={() => { props.deleteScore(props.score._id) }}>delete</a>
     </td>
@@ -20,7 +20,7 @@ const LeaderScore = props => (
     <td>{props.score.rank}</td>
     <td>{props.score.username}</td>
     <td>{props.score.score}</td>
-    <td>{props.score.date.toLocaleString()}</td>
+    <td>{props.score.date}</td>
   </tr>
 )
 
@@ -40,6 +40,7 @@ export default class ScoreList extends Component {
     this.getEventNameFromId = this.getEventNameFromId.bind(this);
     this.updateScores = this.updateScores.bind(this); 
     this.sortScoresFn = this.sortScoresFn.bind(this);
+    this.formatDate = this.formatDate.bind(this);
 
     // Update the board every 5 minutes. Consider changing this post-testing.
     this.updateFrequency = 5 * 60 * 1000;
@@ -143,7 +144,14 @@ export default class ScoreList extends Component {
 
   sortScoresByScore(a, b) {
     return b.score - a.score;
-  }  
+  }
+
+  formatDate(dateStr) {
+    const date = new Date(dateStr);
+    const offsetMs = date.getTimezoneOffset() * 60 * 1000;
+    const dateLocal = new Date(date.getTime() - offsetMs);
+    return dateLocal.toISOString().slice(0, 19).replace(/-/g, "/").replace("T", " ");
+  }
 
   scoreList(sortFn) {
     let displayScores = this.state.scores.slice();
@@ -161,6 +169,7 @@ export default class ScoreList extends Component {
     sortedScores.forEach((score, index) => {
       score.eventname = this.getEventNameFromId(score.eventId);
       score.username = this.getNameFromId(score.userId);
+      score.date = this.formatDate(score.date)
       score.rank = index + 1;
     });
 
