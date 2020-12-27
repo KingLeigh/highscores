@@ -148,9 +148,7 @@ export default class ScoreList extends Component {
 
   formatDate(dateStr) {
     const date = new Date(dateStr);
-    const offsetMs = date.getTimezoneOffset() * 60 * 1000;
-    const dateLocal = new Date(date.getTime() - offsetMs);
-    return dateLocal.toISOString().slice(0, 19).replace(/-/g, "/").replace("T", " ");
+    return date.toLocaleString();
   }
 
   scoreList(sortFn) {
@@ -186,14 +184,13 @@ export default class ScoreList extends Component {
 
   renderLeaderboard() {
     return (
-      <div>
-        <h3>{this.pageTitle}</h3>
-        <h3>{this.getEventNameFromId(this.eventToShow)}</h3>
-        <table className="table">
+      <div className="lb-container">
+        <h2>{this.getEventNameFromId(this.eventToShow)}</h2>
+        <table className="table lb-table">
           <thead className="thead-light">
             <tr>
               <th>Rank</th>
-              <th>User</th>
+              <th>Player</th>
               <th>Score</th>
               <th>Date</th>
             </tr>
@@ -202,7 +199,7 @@ export default class ScoreList extends Component {
             { this.scoreList(this.sortScoresFn) }
           </tbody>
         </table>
-        <span className="lastUpdated">Last updated: { this.state.lastUpdated.toLocaleString() }</span>
+        <span className="lastUpdated">Last updated: { this.formatDate(this.state.lastUpdated) }</span>
       </div>
     )
   }
@@ -214,7 +211,7 @@ export default class ScoreList extends Component {
         <table className="table">
           <thead className="thead-light">
             <tr>
-              <th>User</th>
+              <th>Player</th>
               <th>Event</th>
               <th>Score</th>
               <th>Date</th>

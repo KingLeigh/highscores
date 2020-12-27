@@ -16,22 +16,24 @@ import CompetitionPicker from "./components/competition-picker.component";
 function App() {
   return (
     <Router>
-      <div className="container">
+      <div className="container-fluid">
       <Navbar />
+      </div>
       <br/>
-      <Route path="/" exact component={CompetitionPicker} />
-      <Route path="/events" exact component={EventPicker} />
-      <Route path="/leaderboard/:id"  render={(props) => (
-        <ScoreList {...props} listTitle="Leaderboard"/>
-      )} />      
-      <Route path="/recent" exact  render={(props) => (
-        <ScoreList {...props} listTitle="Recent Scores" byDate={true} />
-      )} />
-      <Route path="/record" component={InputScore} />
-      <Route path="/user" component={CreateUser} />
-      <Route path="/event" component={CreateEvent} />
-      <Route path="/new-competition" component={CreateCompetition} />
-      <Route path="/competition" component={CompetitionPicker} />      
+      <div className="container">
+        <Route path="/" exact component={CompetitionPicker} />
+        <Route path="/events" exact component={EventPicker} />
+        <Route path="/leaderboard/:id"  render={(props) => (
+          <ScoreList {...props} listTitle="Leaderboard"/>
+        )} />      
+        <Route path="/recent" exact  render={(props) => (
+          <ScoreList {...props} listTitle="Recent Scores" byDate={true} />
+        )} />
+        <Route path="/record" component={InputScore} />
+        <Route path="/user" component={CreateUser} />
+        <Route path="/event" component={CreateEvent} />
+        <Route path="/new-competition" component={CreateCompetition} />
+        <Route path="/competition" component={CompetitionPicker} />      
       </div>
     </Router>
   );
