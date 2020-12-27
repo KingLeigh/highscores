@@ -43,7 +43,7 @@ export default class ScoreList extends Component {
 
     // Update the board every 5 minutes. Consider changing this post-testing.
     this.updateFrequency = 5 * 60 * 1000;
-    this.leaderboardSize = 5;
+    this.leaderboardSize = 10;
     this.totalItems = this.isLeaderboard ? this.leaderboardSize : Number.MAX_VALUE;
 
     this.state = {
@@ -150,7 +150,7 @@ export default class ScoreList extends Component {
 
     if (this.isLeaderboard) {
       // TODO: Move the filter to the server eventually.
-      displayScores = displayScores.filter(score => score.eventcode === this.eventToShow);
+      displayScores = displayScores.filter(score => score.eventId === this.eventToShow);
     }
 
     const sortedScores = displayScores.sort(sortFn);
@@ -164,7 +164,6 @@ export default class ScoreList extends Component {
       score.rank = index + 1;
     });
 
-    // TODO: Add a filter by dropdown and/or URL i.e. an actual score table.
     return sortedScores.map(currentscore => {
       if (this.isLeaderboard) {
         return <LeaderScore score={currentscore} 
