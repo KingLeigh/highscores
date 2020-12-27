@@ -9,14 +9,14 @@ export default class Navbar extends Component {
         <Link to="/" className="navbar-brand">HighScores</Link>
         <div className="collapse navbar-collapse">
           <ul className="navbar-nav mr-auto">
+          <li className="navbar-item">
+            <Link to="/events" className="nav-link">Leaderboards</Link>
+            </li>            
             <li className="navbar-item">
-            <Link to="/recent" className="nav-link">Recent</Link>
+            <Link to="/recent" className="nav-link">Recent Scores</Link>
             </li>
             <li className="navbar-item">
-            <Link to="/events" className="nav-link">Pick Event</Link>
-            </li>
-            <li className="navbar-item">
-            <Link to="/record" className="nav-link">Add Score</Link>
+            <Link to="/record" className="nav-link">Record New Score</Link>
             </li>
             <li className="navbar-item">
             <Link to="/user" className="nav-link">Create User</Link>
