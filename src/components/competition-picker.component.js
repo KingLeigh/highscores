@@ -58,7 +58,7 @@ export default class CreateCompetition extends Component {
                 />
           </div>
         </form>
-        <Link to="/new-competition">Create New Competition (link)</Link>
+        <Link to="/new-competition">Create New Competition</Link>
       </div>
     )
   }
