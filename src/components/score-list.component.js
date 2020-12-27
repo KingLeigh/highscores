@@ -36,8 +36,8 @@ export default class ScoreList extends Component {
     this.eventToShow = this.props.match.params.id;
 
     this.deleteScore = this.deleteScore.bind(this);
-    this.getNameFromCode = this.getNameFromCode.bind(this);
-    this.getEventNameFromCode = this.getEventNameFromCode.bind(this);
+    this.getNameFromId = this.getNameFromId.bind(this);
+    this.getEventNameFromId = this.getEventNameFromId.bind(this);
     this.updateScores = this.updateScores.bind(this); 
     this.sortScoresFn = this.sortScoresFn.bind(this);
 
@@ -54,22 +54,23 @@ export default class ScoreList extends Component {
     };
   }
 
-  getNameFromCode(code) {
+  getNameFromId(code) {
     return this.state.usermap[code] || code;
   }
 
-  getEventNameFromCode(code) {
+  getEventNameFromId(code) {
     return this.state.eventmap[code] || code;
   }  
 
   componentDidMount() {
+    const compId = window.sessionStorage.getItem("compId");    
     // TODO: Consider a slower update rate for new Users/Events?
     // Populate the user map
-    axios.get('/api/users/')
+    axios.get('/api/users/' + compId)
       .then(response => {
         if (response.data.length > 0) {
           const newUserMap = {};
-          response.data.forEach(user => newUserMap[user.usercode] = user.name);
+          response.data.forEach(user => newUserMap[user._id] = user.name);
           this.setState({
             usermap: newUserMap,
           })
@@ -80,11 +81,11 @@ export default class ScoreList extends Component {
       });
 
       // Populate the events map
-      axios.get('/api/events/')
+      axios.get('/api/events/' + compId)
       .then(response => {
         if (response.data.length > 0) {
           const newEventMap = {};
-          response.data.forEach(event => newEventMap[event.eventcode] = event.name);
+          response.data.forEach(event => newEventMap[event._id] = event.name);
           this.setState({
             eventmap: newEventMap,
           })
@@ -158,8 +159,8 @@ export default class ScoreList extends Component {
     // Update the score array with additional metadata.
     // TODO: Include things like New and Delta in here.
     sortedScores.forEach((score, index) => {
-      score.eventname = this.getEventNameFromCode(score.eventcode);
-      score.username = this.getNameFromCode(score.usercode);
+      score.eventname = this.getEventNameFromId(score.eventId);
+      score.username = this.getNameFromId(score.userId);
       score.rank = index + 1;
     });
 
@@ -179,7 +180,7 @@ export default class ScoreList extends Component {
     return (
       <div>
         <h3>{this.pageTitle}</h3>
-        <h3>{this.getEventNameFromCode(this.eventToShow)}</h3>
+        <h3>{this.getEventNameFromId(this.eventToShow)}</h3>
         <table className="table">
           <thead className="thead-light">
             <tr>
