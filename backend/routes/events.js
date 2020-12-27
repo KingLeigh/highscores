@@ -8,13 +8,13 @@ router.route('/').get((req, res) => {
 });
 
 router.route('/add').post((req, res) => {
-  const eventcode = req.body.eventcode;
   const name = req.body.name;
+  const competition = req.body.competition;
 
-  const newEvent = new Event({eventcode, name});
+  const newEvent = new Event({name, competition});
 
   newEvent.save()
-    .then(() => res.json(`Event ${eventcode} added!`))
+    .then(() => res.json(`Event ${name} added!`))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 

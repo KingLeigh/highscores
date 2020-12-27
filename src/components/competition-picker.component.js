@@ -27,7 +27,7 @@ export default class CreateCompetition extends Component {
       competitioncode: competitionCode
     })
 
-    if (competitionCode.length == 5) {
+    if (competitionCode.length === 5) {
       console.log("Attempting to get id for " + competitionCode);
       axios.get('/api/competitions/lookup/' + competitionCode)
         .then(res => this.handleLookupResponse(res.data));      
@@ -35,9 +35,10 @@ export default class CreateCompetition extends Component {
   }
 
   handleLookupResponse(data) {
-    if (data != "") {
+    if (data !== "") {
       console.log("Found id" + data._id);
-      // Can redirect to the competition version of the main pages now!
+      window.sessionStorage.setItem("compId", data._id);
+      window.location = '/event';
     } else {
       console.log("No competition found.");
     }
@@ -51,7 +52,6 @@ export default class CreateCompetition extends Component {
           <div className="form-group"> 
             <label>Competition Code: </label>
             <input  type="text"
-                type="text"
                 className="form-control"
                 value={this.state.competitioncode}
                 onChange={this.onChangeCompetitioncode}

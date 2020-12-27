@@ -69,7 +69,6 @@ export default class CreateCompetition extends Component {
                 required
                 maxLength={5}
                 pattern="[A-Za-z0-9]{5}"
-                type="text"
                 className="form-control"
                 value={this.state.competitioncode}
                 onChange={this.onChangeCompetitioncode}

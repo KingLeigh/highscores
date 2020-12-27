@@ -5,20 +5,21 @@ export default class CreateEvent extends Component {
   constructor(props) {
     super(props);
 
-    this.onChangeEventcode = this.onChangeEventcode.bind(this);
     this.onChangeName = this.onChangeName.bind(this);    
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-      eventcode: '',
       name: '',
+      compId: '',
     }
   }
 
-  onChangeEventcode(e) {
+  componentDidMount() {
+    const compId = window.sessionStorage.getItem("compId");
+    console.log("Create event page. CompId = " + compId);
     this.setState({
-      eventcode: e.target.value
-    })
+      compId: compId
+    });
   }
 
   onChangeName(e) {
@@ -31,8 +32,8 @@ export default class CreateEvent extends Component {
     e.preventDefault();
 
     const event = {
-      eventcode: this.state.eventcode,
       name: this.state.name,
+      competition: this.state.compId,
     }
 
     console.log(event);
@@ -42,7 +43,6 @@ export default class CreateEvent extends Component {
       .then(res => console.log(res.data));
 
     this.setState({
-      eventcode: '',
       name: '',
     })
   }
@@ -53,13 +53,6 @@ export default class CreateEvent extends Component {
         <h3>Create New Event</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group"> 
-            <label>Eventcode: </label>
-            <input  type="text"
-                required
-                className="form-control"
-                value={this.state.eventcode}
-                onChange={this.onChangeEventcode}
-                />
             <label>Name: </label>
             <input  type="text"
                 required
