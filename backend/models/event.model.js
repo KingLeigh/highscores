@@ -12,7 +12,7 @@ const eventSchema = new Schema({
   competition: { 
     type: Schema.Types.ObjectId, 
     ref: 'Competition', 
-    required: [true, "Invalid Competition."]
+    required: [true, "Competition required."]
   }
 }, {
   timestamps: true,

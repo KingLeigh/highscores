@@ -5,20 +5,21 @@ export default class CreateUser extends Component {
   constructor(props) {
     super(props);
 
-    this.onChangeUsercode = this.onChangeUsercode.bind(this);
     this.onChangeName = this.onChangeName.bind(this);    
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-      usercode: '',
       name: '',
+      compId: '',
     }
   }
 
-  onChangeUsercode(e) {
+  componentDidMount() {
+    const compId = window.sessionStorage.getItem("compId");
+    console.log("Create user page. CompId = " + compId);
     this.setState({
-      usercode: e.target.value
-    })
+      compId: compId
+    });
   }
 
   onChangeName(e) {
@@ -31,19 +32,17 @@ export default class CreateUser extends Component {
     e.preventDefault();
 
     const user = {
-      usercode: this.state.usercode,
       name: this.state.name,
+      competition: this.state.compId,
     }
 
     console.log(user);
 
-    // TODO: Pull out base url as an arg.
     // TODO: Handle errors for creating user
     axios.post('/api/users/add', user)
       .then(res => console.log(res.data));
 
     this.setState({
-      usercode: '',
       name: '',
     })
   }
@@ -54,13 +53,6 @@ export default class CreateUser extends Component {
         <h3>Create New User</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group"> 
-            <label>Usercode: </label>
-            <input  type="text"
-                required
-                className="form-control"
-                value={this.state.usercode}
-                onChange={this.onChangeUsercode}
-                />
             <label>Name: </label>
             <input  type="text"
                 required
