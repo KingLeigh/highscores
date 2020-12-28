@@ -16,10 +16,7 @@ import CompetitionPicker from "./components/competition-picker.component";
 function App() {
   return (
     <Router>
-      <div className="container-fluid">
       <Navbar />
-      </div>
-      <br/>
       <div className="container">
         <Route path="/" exact component={CompetitionPicker} />
         <Route path="/events" exact component={EventPicker} />
