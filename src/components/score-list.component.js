@@ -185,7 +185,7 @@ export default class ScoreList extends Component {
   renderLeaderboard() {
     return (
       <div className="lb-container">
-        <h2>{this.getEventNameFromId(this.eventToShow)}</h2>
+        <h1>{this.getEventNameFromId(this.eventToShow)}</h1>
         <table className="table lb-table">
           <thead className="thead-light">
             <tr>
