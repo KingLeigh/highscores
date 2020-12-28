@@ -10,6 +10,15 @@ router.route('/comp/:comp').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/user/:user/event/:event').get((req, res) => {
+  Score.find({
+    "userId": req.params.user,
+    "eventId": req.params.event
+  })
+    .then(scores => res.json(scores))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
 router.route('/add').post((req, res) => {
   const userId = req.body.userId;
   const eventId = req.body.eventId;

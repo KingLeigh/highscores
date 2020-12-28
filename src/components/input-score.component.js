@@ -8,11 +8,14 @@ export default class InputScore extends Component {
     this.onChangeUsercode = this.onChangeUsercode.bind(this);
     this.onChangeEventcode = this.onChangeEventcode.bind(this);
     this.onChangeScore = this.onChangeScore.bind(this);
+    this.processUserEventInfo = this.processUserEventInfo.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       userId: '',
       eventId: '',
+      userEventAttempts: "--",
+      userEventHigh: "--",      
       score: 0,
       date: new Date(),
       userObj: [],
@@ -60,7 +63,7 @@ export default class InputScore extends Component {
       userId: e.target.value
     })
 
-    // TODO: Retrieve user-event state.
+    this.getUserEventInfo(e.target.value, this.state.eventId);
   }
 
   onChangeEventcode(e) {
@@ -68,7 +71,31 @@ export default class InputScore extends Component {
       eventId: e.target.value
     })
 
-    // TODO: Retrieve user-event state.    
+    this.getUserEventInfo(this.state.userId, e.target.value);
+  }
+
+  getUserEventInfo(user, event) {
+    // Fetch the scores object
+    axios.get(`/api/scores/user/${user}/event/${event}`)
+      .then(response => {
+        this.processUserEventInfo(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  processUserEventInfo(data) {
+    const attempts = data.length;
+    let highScore = '--';
+    if (attempts > 0) {
+      highScore = 0;
+      data.forEach(score => highScore = Math.max(highScore, score.score));
+    }
+    this.setState({
+      userEventAttempts: attempts,
+      userEventHigh: highScore
+    });
   }
 
   onChangeScore(e) {
@@ -101,7 +128,7 @@ export default class InputScore extends Component {
   render() {
     return (
     <div>
-      <h3>Record Score</h3>
+      <h2>Add New Score</h2>
       <form onSubmit={this.onSubmit}>
       <div className="form-group"> 
           <label>Event: </label>
@@ -136,6 +163,23 @@ export default class InputScore extends Component {
                 })
               }
           </select>
+        </div>
+        <div className="form-group">
+          <h4>Previous Performance</h4>
+          <table className="table">
+            <thead className="thead-light">
+              <tr>
+                <th>Attempts</th>
+                <th>High Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{this.state.userEventAttempts}</td>
+                <td>{this.state.userEventHigh}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
         <div className="form-group">
           <label>Score: </label>
