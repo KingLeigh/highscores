@@ -14,11 +14,17 @@ export default class CreateCompetition extends Component {
   }
 
   componentDidMount() {
-    document.getElementsByClassName("navbar-collapse")[0].style.visibility = 'hidden';
+    const hideableElements = document.getElementsByClassName("hide-on-home");
+    for (let i = 0; i < hideableElements.length; i++) {
+      hideableElements[i].style.visibility = 'hidden';
+    }
   }
 
   componentWillUnmount() {
-    document.getElementsByClassName("navbar-collapse")[0].style.visibility = 'visible';
+    const hideableElements = document.getElementsByClassName("hide-on-home");
+    for (let i = 0; i < hideableElements.length; i++) {
+      hideableElements[i].style.visibility = 'visible';
+    }
   }
 
   onChangeCompetitioncode(e) {

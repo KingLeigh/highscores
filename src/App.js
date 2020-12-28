@@ -23,8 +23,8 @@ function App() {
     <Router>
       <Navbar bg="dark" variant="dark" expand="lg">
         <Navbar.Brand as={Link} to="/">HighScores</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse className="ml-auto" id="basic-navbar-nav">
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className="hide-on-home" />
+        <Navbar.Collapse className="ml-auto hide-on-home" id="basic-navbar-nav">
           <Nav>
             <Nav.Link as={Link} to="/events">Leaderboard</Nav.Link>
             <Nav.Link as={Link} to="/record">Add A Score</Nav.Link>
