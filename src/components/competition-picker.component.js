@@ -1,4 +1,6 @@
+import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container';
+import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import React, { Component } from 'react';
@@ -45,39 +47,47 @@ export default class CompetitionPicker extends Component {
 
   handleLookupResponse(data) {
     if (data !== "") {
-      console.log("Found id" + data._id);
       window.sessionStorage.setItem("compId", data._id);
       window.location = '/events';
-    } else {
-      console.log("No competition found.");
     }
   } 
 
   render() {
     return (
-      <Container>
+      <Container className="text-center">
         <Row className="justify-content-center">
           <Col>
             <h1>HighScores.app</h1>
           </Col>
         </Row>
-        <Row className="justify-content-around">
-          <Col xs={5}>
-            <h4>Load an existing Competition</h4>
-            <div className="form-group">
-              <input  type="text"
-                      className="form-control input-lg col-3"
-                      size="5"
-                      value={this.state.competitioncode}
-                      onChange={this.onChangeCompetitioncode}
-                      />
-            </div>
-          </Col>
-          <Col xs={5}>
-            <h4>
-              <Link to="/new-competition">Create New Competition</Link>
-            </h4>
-          </Col>
+        <Row className="justify-content-center">
+          <Card className="m-3" style={{ width: '20rem' }}>
+            <Card.Img variant="top" src="holder.js/100px180" />
+            <Card.Body>
+              <Card.Title>Load Existing Scores</Card.Title>
+              <Card.Text>
+                Enter your Competition Code to load an existing set of Leaderboards
+              </Card.Text>
+              <div className="form-group">
+                <input  type="text"
+                        className="form-control input-lg"
+                        size="5"
+                        value={this.state.competitioncode}
+                        onChange={this.onChangeCompetitioncode}
+                        />
+              </div>
+            </Card.Body>
+          </Card>
+          <Card className="m-3" style={{ width: '20rem' }}>
+            <Card.Img variant="top" src="holder.js/100px180" />
+            <Card.Body>
+              <Card.Title>Create New Leaderboard</Card.Title>
+              <Card.Text>
+                Want to start collecting scores for a new set of events?
+              </Card.Text>
+              <Button variant="primary" as={Link} to="/new-competition">Click Here</Button>
+            </Card.Body>
+          </Card>
         </Row>
       </Container>
     )
