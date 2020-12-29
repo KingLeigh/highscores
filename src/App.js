@@ -39,7 +39,6 @@ function App() {
         </Navbar.Collapse>
       </Navbar>
       <br />
-      <Container>
         <Route path="/" exact component={CompetitionPicker} />
         <Route path="/events" exact component={EventPicker} />
         <Route path="/leaderboard/:id"  render={(props) => (
@@ -52,7 +51,6 @@ function App() {
         <Route path="/user" component={CreateUser} />
         <Route path="/event" component={CreateEvent} />
         <Route path="/new-competition" component={CreateCompetition} />    
-      </Container>
     </Router>
   );
 }

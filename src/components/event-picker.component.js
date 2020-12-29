@@ -1,3 +1,4 @@
+import Container from 'react-bootstrap/Container';
 import React, { Component } from 'react';
 import axios from 'axios';
 
@@ -46,7 +47,7 @@ export default class EventPicker extends Component {
 
   render() {
     return (
-    <div>
+    <Container>
       <h3>Choose your leaderboard</h3>
       <form onSubmit={this.onSubmit}>
       <div className="form-group"> 
@@ -70,7 +71,7 @@ export default class EventPicker extends Component {
           <input type="submit" value="Show Board" className="btn btn-primary" />
         </div>
       </form>
-    </div>
+    </Container>
     )
   }
 }

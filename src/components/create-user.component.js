@@ -1,3 +1,4 @@
+import Container from 'react-bootstrap/Container';
 import React, { Component } from 'react';
 import axios from 'axios';
 
@@ -48,7 +49,7 @@ export default class CreateUser extends Component {
 
   render() {
     return (
-      <div>
+      <Container>
         <h3>Add New Player</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group"> 
@@ -64,7 +65,7 @@ export default class CreateUser extends Component {
             <input type="submit" value="Create User" className="btn btn-primary" />
           </div>
         </form>
-      </div>
+      </Container>
     )
   }
 }

@@ -1,3 +1,4 @@
+import Container from 'react-bootstrap/Container';
 import React, { Component } from 'react';
 import axios from 'axios';
 
@@ -127,7 +128,7 @@ export default class InputScore extends Component {
 
   render() {
     return (
-    <div>
+    <Container>
       <h2>Add New Score</h2>
       <form onSubmit={this.onSubmit}>
       <div className="form-group"> 
@@ -195,7 +196,7 @@ export default class InputScore extends Component {
           <input type="submit" value="Record Score" className="btn btn-primary" />
         </div>
       </form>
-    </div>
+    </Container>
     )
   }
 }

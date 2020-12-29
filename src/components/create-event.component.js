@@ -1,3 +1,4 @@
+import Container from 'react-bootstrap/Container';
 import React, { Component } from 'react';
 import axios from 'axios';
 
@@ -49,7 +50,7 @@ export default class CreateEvent extends Component {
 
   render() {
     return (
-      <div>
+      <Container>
         <h3>Create New Event</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group"> 
@@ -65,7 +66,7 @@ export default class CreateEvent extends Component {
             <input type="submit" value="Create Event" className="btn btn-primary" />
           </div>
         </form>
-      </div>
+      </Container>
     )
   }
 }

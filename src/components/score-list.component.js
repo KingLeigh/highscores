@@ -1,3 +1,4 @@
+import Container from 'react-bootstrap/Container';
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -184,7 +185,7 @@ export default class ScoreList extends Component {
 
   renderLeaderboard() {
     return (
-      <div className="lb-container">
+      <Container className="lb-container">
         <h1>{this.getEventNameFromId(this.eventToShow)}</h1>
         <table className="table lb-table">
           <thead className="thead-light">
@@ -200,13 +201,13 @@ export default class ScoreList extends Component {
           </tbody>
         </table>
         <span className="lastUpdated">Last updated: { this.formatDate(this.state.lastUpdated) }</span>
-      </div>
+      </Container>
     )
   }
 
   renderRecent() {
     return (
-      <div>
+      <Container>
         <h3>{this.pageTitle}</h3>
         <table className="table">
           <thead className="thead-light">
@@ -223,7 +224,7 @@ export default class ScoreList extends Component {
           </tbody>
         </table>
         <span className="lastUpdated">Last updated: { this.state.lastUpdated.toLocaleString() }</span>
-      </div>
+      </Container>
     )
   }
 

@@ -1,3 +1,4 @@
+import Container from 'react-bootstrap/Container';
 import React, { Component } from 'react';
 import axios from 'axios';
 
@@ -72,7 +73,7 @@ export default class CreateCompetition extends Component {
   // TODO: Add validation for the competition code.
   render() {
     return (
-      <div>
+      <Container>
         <h3>Create New Competition</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group"> 
@@ -97,7 +98,7 @@ export default class CreateCompetition extends Component {
             <input type="submit" value="Create Competition" className="btn btn-primary" />
           </div>
         </form>
-      </div>
+      </Container>
     )
   }
 }
