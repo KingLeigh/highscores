@@ -64,9 +64,9 @@ export default class CompetitionPicker extends Component {
           <Card className="m-3" style={{ width: '20rem' }}>
             <Card.Img variant="top" src="holder.js/100px180" />
             <Card.Body>
-              <Card.Title>Load Existing Scores</Card.Title>
+              <Card.Title>Load Existing Competition</Card.Title>
               <Card.Text>
-                Enter your Competition Code to load an existing set of Leaderboards
+                Enter your Competition Code to load an existing set of players, scores and leaderboards.
               </Card.Text>
               <div className="form-group">
                 <input  type="text"
@@ -81,9 +81,9 @@ export default class CompetitionPicker extends Component {
           <Card className="m-3" style={{ width: '20rem' }}>
             <Card.Img variant="top" src="holder.js/100px180" />
             <Card.Body>
-              <Card.Title>Create New Leaderboard</Card.Title>
+              <Card.Title>Create New Competition</Card.Title>
               <Card.Text>
-                Want to start collecting scores for a new set of events?
+                Want to start collecting scores for a brand new set of events?
               </Card.Text>
               <Button variant="primary" as={Link} to="/new-competition">Click Here</Button>
             </Card.Body>

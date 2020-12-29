@@ -1,11 +1,11 @@
 import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-// TODO: Define different Score components for the score editor and the scoreboard
 const RecentScore = props => (
-  <tr>
+  <tr className="d-flex">
     <td>{props.score.username}</td>
     <td>{props.score.eventname}</td>
     <td>{props.score.score}</td>
@@ -17,16 +17,13 @@ const RecentScore = props => (
 )
 
 const LeaderScore = props => (
-  <tr>
-    <td>{props.score.rank}</td>
-    <td>{props.score.username}</td>
-    <td>{props.score.score}</td>
-    <td>{props.score.date}</td>
+  <tr className="d-flex">
+    <td className="col-2">{props.score.rank}</td>
+    <td className="col-4">{props.score.username}</td>
+    <td className="col-3">{props.score.score}</td>
+    <td className="col-3">{props.score.date}</td>
   </tr>
 )
-
-
-// TODO: Per-event filter
 
 export default class ScoreList extends Component {
   constructor(props) {
@@ -188,20 +185,22 @@ export default class ScoreList extends Component {
       <Container className="lb-container">
         <h2>High Scores</h2>
         <h3>{this.getEventNameFromId(this.eventToShow)}</h3>
-        <table className="table lb-table">
-          <thead className="thead-light">
-            <tr>
-              <th>Rank</th>
-              <th>Player</th>
-              <th>Score</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            { this.scoreList(this.sortScoresFn) }
-          </tbody>
-        </table>
-        <span className="lastUpdated">Last updated: { this.formatDate(this.state.lastUpdated) }</span>
+        <Row>
+          <table className="table table-striped mt-3">
+            <thead className="thead-light">
+              <tr className="d-flex">
+                <th className="col-2">Rank</th>
+                <th className="col-4">Player</th>
+                <th className="col-3">Score</th>
+                <th className="col-3">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              { this.scoreList(this.sortScoresFn) }
+            </tbody>
+            <caption>Last updated: { this.state.lastUpdated.toLocaleString() }</caption>              
+          </table>
+        </Row>
       </Container>
     )
   }
@@ -210,7 +209,7 @@ export default class ScoreList extends Component {
     return (
       <Container>
         <h2>{this.pageTitle}</h2>
-        <table className="table">
+        <table className="table table-striped">
           <thead className="thead-light">
             <tr>
               <th>Player</th>
@@ -223,8 +222,8 @@ export default class ScoreList extends Component {
           <tbody>
             { this.scoreList(this.sortScoresFn) }
           </tbody>
+          <caption>Last updated: { this.state.lastUpdated.toLocaleString() }</caption>          
         </table>
-        <span className="lastUpdated">Last updated: { this.state.lastUpdated.toLocaleString() }</span>
       </Container>
     )
   }
