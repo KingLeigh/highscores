@@ -18,7 +18,7 @@ const RecentScore = props => (
 
 const LeaderScore = props => (
   <tr className="d-flex">
-    <td className="col-2">{props.score.rank}</td>
+    <th scope="row" className="col-2">{props.score.rank}</th>
     <td className="col-4">{props.score.username}</td>
     <td className="col-3">{props.score.score}</td>
     <td className="col-3">{props.score.date}</td>
@@ -189,10 +189,10 @@ export default class ScoreList extends Component {
           <table className="table table-striped mt-3">
             <thead className="thead-light">
               <tr className="d-flex">
-                <th className="col-2">Rank</th>
-                <th className="col-4">Player</th>
-                <th className="col-3">Score</th>
-                <th className="col-3">Date</th>
+                <th scope="col" className="col-2">Rank</th>
+                <th scope="col" className="col-4">Player</th>
+                <th scope="col" className="col-3">Score</th>
+                <th scope="col" className="col-3">Date</th>
               </tr>
             </thead>
             <tbody>
@@ -209,7 +209,7 @@ export default class ScoreList extends Component {
     return (
       <Container className="text-center">
         <h2>{this.pageTitle}</h2>
-        <table className="table table-striped">
+        <table className="table table-striped mt-3">
           <thead className="thead-light">
             <tr className="d-flex">
               <th className="col-3">Player</th>
