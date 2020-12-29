@@ -49,6 +49,7 @@ export default class ScoreList extends Component {
       scores: [],
       usermap: {},
       eventmap: {},
+      compName: '',
       lastUpdated: new Date(),
     };
   }
@@ -62,7 +63,10 @@ export default class ScoreList extends Component {
   }  
 
   componentDidMount() {
-    const compId = window.sessionStorage.getItem("compId");    
+    const compId = window.sessionStorage.getItem("compId"); 
+    this.setState({
+      compName: window.sessionStorage.getItem("compName")
+    });       
     // TODO: Consider a slower update rate for new Users/Events?
     // Populate the user map
     axios.get('/api/users/' + compId)
@@ -183,6 +187,7 @@ export default class ScoreList extends Component {
   renderLeaderboard() {
     return (
       <Container className="text-center">
+        <h1>{this.state.compName}</h1>
         <h2>High Scores</h2>
         <h3>{this.getEventNameFromId(this.eventToShow)}</h3>
         <Row>

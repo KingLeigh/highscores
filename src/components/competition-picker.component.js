@@ -48,6 +48,7 @@ export default class CompetitionPicker extends Component {
   handleLookupResponse(data) {
     if (data !== "") {
       window.sessionStorage.setItem("compId", data._id);
+      window.sessionStorage.setItem("compName", data.name);
       window.location = '/events';
     }
   } 
