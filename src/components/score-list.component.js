@@ -186,7 +186,8 @@ export default class ScoreList extends Component {
   renderLeaderboard() {
     return (
       <Container className="lb-container">
-        <h1>{this.getEventNameFromId(this.eventToShow)}</h1>
+        <h2>High Scores</h2>
+        <h3>{this.getEventNameFromId(this.eventToShow)}</h3>
         <table className="table lb-table">
           <thead className="thead-light">
             <tr>
@@ -208,7 +209,7 @@ export default class ScoreList extends Component {
   renderRecent() {
     return (
       <Container>
-        <h3>{this.pageTitle}</h3>
+        <h2>{this.pageTitle}</h2>
         <table className="table">
           <thead className="thead-light">
             <tr>

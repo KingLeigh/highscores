@@ -51,7 +51,7 @@ export default class CreateEvent extends Component {
   render() {
     return (
       <Container>
-        <h3>Create New Event</h3>
+        <h2>Create New Event</h2>
         <form onSubmit={this.onSubmit}>
           <div className="form-group"> 
             <label>Name: </label>

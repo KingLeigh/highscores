@@ -166,7 +166,7 @@ export default class InputScore extends Component {
           </select>
         </div>
         <div className="form-group">
-          <h4>Previous Performance</h4>
+          <label>Previous Performance</label>
           <table className="table">
             <thead className="thead-light">
               <tr>
@@ -183,7 +183,7 @@ export default class InputScore extends Component {
           </table>
         </div>
         <div className="form-group">
-          <label>Score: </label>
+          <label>New Score: </label>
           <input 
               type="text" 
               className="form-control"

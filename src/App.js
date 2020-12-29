@@ -22,7 +22,7 @@ function App() {
   return (
     <Router>
       <Navbar bg="dark" variant="dark" expand="lg">
-        <Navbar.Brand as={Link} to="/">HighScores</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/">HighScores.app</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="hide-on-home" />
         <Navbar.Collapse className="ml-auto hide-on-home" id="basic-navbar-nav">
           <Nav>

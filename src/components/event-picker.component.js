@@ -48,7 +48,7 @@ export default class EventPicker extends Component {
   render() {
     return (
     <Container>
-      <h3>Choose your leaderboard</h3>
+      <h2>Choose your leaderboard</h2>
       <form onSubmit={this.onSubmit}>
       <div className="form-group"> 
           <label>Event: </label>

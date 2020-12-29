@@ -50,7 +50,7 @@ export default class CreateUser extends Component {
   render() {
     return (
       <Container>
-        <h3>Add New Player</h3>
+        <h2>Add New Player</h2>
         <form onSubmit={this.onSubmit}>
           <div className="form-group"> 
             <label>Name: </label>

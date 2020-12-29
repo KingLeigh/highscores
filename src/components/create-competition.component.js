@@ -70,11 +70,10 @@ export default class CreateCompetition extends Component {
     }
   }  
 
-  // TODO: Add validation for the competition code.
   render() {
     return (
       <Container>
-        <h3>Create New Competition</h3>
+        <h2>Create New Competition</h2>
         <form onSubmit={this.onSubmit}>
           <div className="form-group"> 
             <label>Competition Code (5 chars): </label>
@@ -86,7 +85,7 @@ export default class CreateCompetition extends Component {
                 value={this.state.competitioncode}
                 onChange={this.onChangeCompetitioncode}
                 />
-            <label>Name: </label>
+            <label>Competition Name: </label>
             <input  type="text"
                 required
                 className="form-control"
