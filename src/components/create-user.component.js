@@ -16,7 +16,6 @@ export default class CreateUser extends Component {
 
   componentDidMount() {
     const compId = window.sessionStorage.getItem("compId");
-    console.log("Create user page. CompId = " + compId);
     this.setState({
       compId: compId
     });
@@ -50,7 +49,7 @@ export default class CreateUser extends Component {
   render() {
     return (
       <div>
-        <h3>Create New User</h3>
+        <h3>Add New Player</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group"> 
             <label>Name: </label>

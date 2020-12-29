@@ -1,8 +1,11 @@
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-export default class CreateCompetition extends Component {
+export default class CompetitionPicker extends Component {
   constructor(props) {
     super(props);
 
@@ -52,20 +55,31 @@ export default class CreateCompetition extends Component {
 
   render() {
     return (
-      <div>
-        <h3>Load Your Competition</h3>
-        <form onSubmit={this.onSubmit}>
-          <div className="form-group"> 
-            <label>Competition Code: </label>
-            <input  type="text"
-                className="form-control"
-                value={this.state.competitioncode}
-                onChange={this.onChangeCompetitioncode}
-                />
-          </div>
-        </form>
-        <Link to="/new-competition">Create New Competition</Link>
-      </div>
+      <Container>
+        <Row className="justify-content-center">
+          <Col>
+            <h1>HighScores.app</h1>
+          </Col>
+        </Row>
+        <Row className="justify-content-around">
+          <Col xs={5}>
+            <h4>Load an existing Competition</h4>
+            <div className="form-group">
+              <input  type="text"
+                      className="form-control input-lg col-3"
+                      size="5"
+                      value={this.state.competitioncode}
+                      onChange={this.onChangeCompetitioncode}
+                      />
+            </div>
+          </Col>
+          <Col xs={5}>
+            <h4>
+              <Link to="/new-competition">Create New Competition</Link>
+            </h4>
+          </Col>
+        </Row>
+      </Container>
     )
   }
 }
