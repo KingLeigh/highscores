@@ -6,11 +6,11 @@ import axios from 'axios';
 
 const RecentScore = props => (
   <tr className="d-flex">
-    <td>{props.score.username}</td>
-    <td>{props.score.eventname}</td>
-    <td>{props.score.score}</td>
-    <td>{props.score.date}</td>
-    <td>
+    <td className="col-3">{props.score.username}</td>
+    <td className="col-3">{props.score.eventname}</td>
+    <td className="col-2">{props.score.score}</td>
+    <td className="col-3">{props.score.date}</td>
+    <td className="col-1">
       <a href="#" onClick={() => { props.deleteScore(props.score._id) }}>delete</a>
     </td>
   </tr>
@@ -182,7 +182,7 @@ export default class ScoreList extends Component {
 
   renderLeaderboard() {
     return (
-      <Container className="lb-container">
+      <Container className="text-center">
         <h2>High Scores</h2>
         <h3>{this.getEventNameFromId(this.eventToShow)}</h3>
         <Row>
@@ -207,16 +207,16 @@ export default class ScoreList extends Component {
 
   renderRecent() {
     return (
-      <Container>
+      <Container className="text-center">
         <h2>{this.pageTitle}</h2>
         <table className="table table-striped">
           <thead className="thead-light">
-            <tr>
-              <th>Player</th>
-              <th>Event</th>
-              <th>Score</th>
-              <th>Date</th>
-              <th>Actions</th>
+            <tr className="d-flex">
+              <th className="col-3">Player</th>
+              <th className="col-3">Event</th>
+              <th className="col-2">Score</th>
+              <th className="col-3">Date</th>
+              <th className="col-1">Actions</th>
             </tr>
           </thead>
           <tbody>
