@@ -12,15 +12,11 @@ export default class EventPicker extends Component {
     this.state = {
       eventId: '',
       eventObj: [],
-      compName: '',
     }
   }
 
   componentDidMount() {
     const compId = window.sessionStorage.getItem("compId");
-    this.setState({
-      compName: window.sessionStorage.getItem("compName")
-    });
 
     // Populate the event states
     axios.get('/api/events/' + compId)
@@ -51,20 +47,17 @@ export default class EventPicker extends Component {
 
   render() {
     return (
-      <Container>
-        <h1>{this.state.compName}</h1>
-        <h2>Select A Leaderboard</h2>
+      <div>
         <form onSubmit={this.onSubmit}>
-        <div className="form-group"> 
-            <label>Event: </label>
-            <select ref="userInput"
+          <div className="form-group">
+            <select
                 required
                 className="form-control"
                 value={this.state.eventId}
                 onChange={this.onChangeEventcode}>
                 {
                   this.state.eventObj.map(function(event) {
-                    return <option 
+                    return <option
                       key={event._id}
                       value={event._id}>{event.name}
                       </option>;
@@ -76,7 +69,7 @@ export default class EventPicker extends Component {
             <input type="submit" value="Show Board" className="btn btn-primary" />
           </div>
         </form>
-      </Container>
+      </div>
     )
   }
 }
