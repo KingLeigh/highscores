@@ -2,12 +2,10 @@ import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route} from "react-router-dom";
 
-import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
-import HighScoreNavbar from "./components/navbar.component"
 import ScoreList from "./components/score-list.component";
 import InputScore from "./components/input-score.component";
 import CreateCompetition from "./components/create-competition.component";

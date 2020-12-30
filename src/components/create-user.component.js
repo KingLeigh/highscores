@@ -1,4 +1,3 @@
-import Container from 'react-bootstrap/Container';
 import React, { Component } from 'react';
 import axios from 'axios';
 
@@ -45,15 +44,16 @@ export default class CreateUser extends Component {
     this.setState({
       name: '',
     })
+
+    window.location = '/c/' + this.state.compId;
   }
 
   render() {
     return (
-      <Container>
-        <h2>Add New Player</h2>
+      <div>
         <form onSubmit={this.onSubmit}>
           <div className="form-group"> 
-            <label>Name: </label>
+            <label>Player Name: </label>
             <input  type="text"
                 required
                 className="form-control"
@@ -62,10 +62,10 @@ export default class CreateUser extends Component {
                 />
           </div>
           <div className="form-group">
-            <input type="submit" value="Create User" className="btn btn-primary" />
+            <input type="submit" value="Add Player" className="btn btn-primary" />
           </div>
         </form>
-      </Container>
+      </div>
     )
   }
 }
