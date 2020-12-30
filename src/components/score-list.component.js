@@ -188,8 +188,8 @@ export default class ScoreList extends Component {
     return (
       <Container className="text-center">
         <h1>{this.state.compName}</h1>
-        <h2>High Scores</h2>
-        <h3>{this.getEventNameFromId(this.eventToShow)}</h3>
+        <h2>{this.getEventNameFromId(this.eventToShow)}</h2>
+        <h3>High Scores</h3>
         <Row>
           <table className="table table-striped mt-3">
             <thead className="thead-light">
