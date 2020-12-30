@@ -62,8 +62,8 @@ export default class CompetitionPicker extends Component {
           </Col>
         </Row>
         <Row className="justify-content-center">
-          <Card className="m-3" style={{ width: '20rem' }}>
-            <Card.Img variant="top" src="holder.js/100px180" />
+          <Card className="m-3 p-3" style={{ width: '20rem' }}>
+            <Card.Img variant="top" src="../img/card-placeholder.svg" />
             <Card.Body>
               <Card.Title>Load Existing Competition</Card.Title>
               <Card.Text>
@@ -79,8 +79,8 @@ export default class CompetitionPicker extends Component {
               </div>
             </Card.Body>
           </Card>
-          <Card className="m-3" style={{ width: '20rem' }}>
-            <Card.Img variant="top" src="holder.js/100px180" />
+          <Card className="m-3 p-3" style={{ width: '20rem' }}>
+            <Card.Img variant="top" src="../img/card-placeholder.svg" />
             <Card.Body>
               <Card.Title>Create New Competition</Card.Title>
               <Card.Text>
