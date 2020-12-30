@@ -51,32 +51,32 @@ export default class EventPicker extends Component {
 
   render() {
     return (
-    <Container>
-      <h1>{this.state.compName}</h1>
-      <h2>Select A Leaderboard</h2>
-      <form onSubmit={this.onSubmit}>
-      <div className="form-group"> 
-          <label>Event: </label>
-          <select ref="userInput"
-              required
-              className="form-control"
-              value={this.state.eventId}
-              onChange={this.onChangeEventcode}>
-              {
-                this.state.eventObj.map(function(event) {
-                  return <option 
-                    key={event._id}
-                    value={event._id}>{event.name}
-                    </option>;
-                })
-              }
-          </select>
-        </div>
-        <div className="form-group">
-          <input type="submit" value="Show Board" className="btn btn-primary" />
-        </div>
-      </form>
-    </Container>
+      <Container>
+        <h1>{this.state.compName}</h1>
+        <h2>Select A Leaderboard</h2>
+        <form onSubmit={this.onSubmit}>
+        <div className="form-group"> 
+            <label>Event: </label>
+            <select ref="userInput"
+                required
+                className="form-control"
+                value={this.state.eventId}
+                onChange={this.onChangeEventcode}>
+                {
+                  this.state.eventObj.map(function(event) {
+                    return <option 
+                      key={event._id}
+                      value={event._id}>{event.name}
+                      </option>;
+                  })
+                }
+            </select>
+          </div>
+          <div className="form-group">
+            <input type="submit" value="Show Board" className="btn btn-primary" />
+          </div>
+        </form>
+      </Container>
     )
   }
 }
