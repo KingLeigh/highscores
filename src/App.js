@@ -20,26 +20,23 @@ import CompetitionPicker from "./components/competition-picker.component";
 function App() {
   return (
     <Router>
-      <Navbar bg="dark" variant="dark" expand="lg">
-        <Navbar.Brand as={Link} to="/">HighScores.app</Navbar.Brand>
+      <Navbar bg="dark" variant="dark" expand="md">
+        <Navbar.Brand as={Link} to="/current">HighScores.app</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="hide-on-home" />
         <Navbar.Collapse className="ml-auto hide-on-home" id="basic-navbar-nav">
           <Nav>
-            <Nav.Link as={Link} to="/events">Leaderboard</Nav.Link>
-            <Nav.Link as={Link} to="/record">Add A Score</Nav.Link>
-            <Nav.Link as={Link} to="/recent">Recent Scores</Nav.Link>
-            <NavDropdown title="Admin" id="nav-admin-dropdown">
-              <NavDropdown.Item as={Link} to="/user">Add Player</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/event">Add Event</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item as={Link} to="/recent">Edit Scores</NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link as={Link} to="/current">Competition Home</Nav.Link>            
+            <Nav.Link as={Link} to="/recent">All Recent Scores</Nav.Link>
           </Nav>
+          <Nav className="ml-auto">
+            <Nav.Link as={Link} to="/">Change Competition</Nav.Link>
+          </Nav>          
         </Navbar.Collapse>
       </Navbar>
       <br />
         <Route path="/" exact component={CompetitionPicker} />
         <Route path="/c/:id" component={MainComponent} />
+        <Route path="/current" component={MainComponent} />        
         <Route path="/events" exact component={EventPicker} />
         <Route path="/leaderboard/:id"  render={(props) => (
           <ScoreList {...props} listTitle="Leaderboard"/>

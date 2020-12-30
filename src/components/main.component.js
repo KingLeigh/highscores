@@ -13,8 +13,18 @@ export default class MainComponent extends Component {
   constructor(props) {
     super(props);
 
-    const compId = this.props.match.params.id;
-    window.sessionStorage.setItem("compId", compId);
+    const urlCompId = this.props.match.params.id;
+    let compId;
+    if (urlCompId) {
+      compId = urlCompId;
+      window.sessionStorage.setItem("compId", compId);
+      // TODO: Get competition name if needed.
+    } else if (window.sessionStorage.getItem("compId")) {
+      compId = window.sessionStorage.getItem("compId");
+    } else {
+      // Unable to determine competition, go home.
+      window.location = '/';
+    }
 
     this.state = {
       compId: compId,
