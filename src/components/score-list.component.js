@@ -29,7 +29,6 @@ export default class ScoreList extends Component {
   constructor(props) {
     super(props);
 
-    this.pageTitle = props.listTitle;
     this.isLeaderboard = !props.byDate;
     this.eventToShow = this.props.match.params.id;
 
@@ -213,7 +212,8 @@ export default class ScoreList extends Component {
   renderRecent() {
     return (
       <Container className="text-center">
-        <h2>{this.pageTitle}</h2>
+        <h1>{this.state.compName}</h1>        
+        <h2>Recent Scores</h2>
         <table className="table table-striped mt-3">
           <thead className="thead-light">
             <tr className="d-flex">

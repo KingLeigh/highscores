@@ -1,3 +1,4 @@
+import Button from 'react-bootstrap/Button';
 import React, { Component } from 'react';
 import axios from 'axios';
 
@@ -67,7 +68,12 @@ export default class EventPicker extends Component {
           <div className="form-group">
             <input type="submit" value="Show Board" className="btn btn-primary" />
           </div>
+
+          <div className="form-group">
+            <Button variant="secondary" href="/recent">View/Edit All</Button>
+          </div>
         </form>
+        
       </div>
     )
   }
