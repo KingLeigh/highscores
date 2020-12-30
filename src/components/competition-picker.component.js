@@ -73,6 +73,7 @@ export default class CompetitionPicker extends Component {
                 <input  type="text"
                         className="form-control input-lg"
                         size="5"
+                        placeholder="Competition Code"
                         value={this.state.competitioncode}
                         onChange={this.onChangeCompetitioncode}
                         />
