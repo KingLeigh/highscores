@@ -4,6 +4,7 @@ import CreateUser from "./create-user.component";
 import CreateEvent from "./create-event.component";
 import Col from 'react-bootstrap/Col';
 import EventPicker from "./event-picker.component";
+import InputScore from "./input-score.component";
 import Row from 'react-bootstrap/Row';
 import React, { Component } from 'react';
 
@@ -53,6 +54,12 @@ export default class MainComponent extends Component {
                 <EventPicker />
               </Card.Body>
           </Card>
+          <Card className="m-3 p-3" style={{ width: '20rem' }}>
+            <Card.Title>Record A Score</Card.Title>
+              <Card.Body>
+                <InputScore />
+              </Card.Body>
+          </Card>          
         </Row>
         <Row>
           <Col>

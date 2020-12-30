@@ -1,4 +1,3 @@
-import Container from 'react-bootstrap/Container';
 import React, { Component } from 'react';
 import axios from 'axios';
 
@@ -128,12 +127,11 @@ export default class InputScore extends Component {
 
   render() {
     return (
-    <Container>
-      <h2>Add New Score</h2>
+    <div>
       <form onSubmit={this.onSubmit}>
       <div className="form-group"> 
           <label>Event: </label>
-          <select ref="userInput"
+          <select
               required
               className="form-control"
               value={this.state.eventId}
@@ -166,21 +164,11 @@ export default class InputScore extends Component {
           </select>
         </div>
         <div className="form-group">
-          <label>Previous Performance</label>
-          <table className="table">
-            <thead className="thead-light">
-              <tr>
-                <th>Attempts</th>
-                <th>High Score</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{this.state.userEventAttempts}</td>
-                <td>{this.state.userEventHigh}</td>
-              </tr>
-            </tbody>
-          </table>
+          <span className="scoreLabel">Previous Attempts: </span> 
+          <span className="scoreResult">{this.state.userEventAttempts}</span>
+          <br />
+          <span className="scoreLabel">Personal Best: </span>
+          <span className="scoreResult">{this.state.userEventHigh}</span>
         </div>
         <div className="form-group">
           <label>New Score: </label>
@@ -196,7 +184,7 @@ export default class InputScore extends Component {
           <input type="submit" value="Record Score" className="btn btn-primary" />
         </div>
       </form>
-    </Container>
+    </div>
     )
   }
 }
