@@ -34,7 +34,6 @@ export default class InputScore extends Component {
       .then(response => {
         if (response.data.length > 0) {
           this.setState({
-            userId: response.data[0]._id,
             userObj: response.data,
           })
         }
@@ -48,7 +47,6 @@ export default class InputScore extends Component {
     .then(response => {
       if (response.data.length > 0) {
         this.setState({
-          eventId: response.data[0]._id,
           eventObj: response.data,
         })
       }
@@ -75,6 +73,13 @@ export default class InputScore extends Component {
   }
 
   getUserEventInfo(user, event) {
+    if (user == "" || event == "") {
+      this.setState({
+        userEventAttempts: 0,
+        userEventHigh: '--'
+      });      
+      return;
+    }
     // Fetch the scores object
     axios.get(`/api/scores/user/${user}/event/${event}`)
       .then(response => {
@@ -107,6 +112,10 @@ export default class InputScore extends Component {
   onSubmit(e) {
     e.preventDefault();
 
+    if (this.state.userId == "blank" || this.state.eventId == "blank") {
+      return;
+    }    
+
     const score = {
       userId: this.state.userId,
       eventId: this.state.eventId,
@@ -136,6 +145,7 @@ export default class InputScore extends Component {
               className="form-control"
               value={this.state.eventId}
               onChange={this.onChangeEventcode}>
+              <option key="" value="" />
               {
                 this.state.eventObj.map(function(event) {
                   return <option 
@@ -148,11 +158,12 @@ export default class InputScore extends Component {
         </div>          
         <div className="form-group"> 
           <label>Player: </label>
-          <select ref="userInput"
+          <select
               required
               className="form-control"
               value={this.state.userId}
               onChange={this.onChangeUsercode}>
+              <option key="" value="" />                
               {
                 this.state.userObj.map(function(user) {
                   return <option 
