@@ -1,5 +1,7 @@
 import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
 import React, { Component } from 'react';
+import Row from 'react-bootstrap/Row';
 import axios from 'axios';
 
 export default class CreateCompetition extends Component {
@@ -72,31 +74,46 @@ export default class CreateCompetition extends Component {
 
   render() {
     return (
-      <Container>
-        <h2>Create New Competition</h2>
-        <form onSubmit={this.onSubmit}>
-          <div className="form-group"> 
-            <label>Competition Code (5 chars): </label>
-            <input  type="text"
-                required
-                maxLength={5}
-                pattern="[A-Za-z0-9]{5}"
-                className="form-control"
-                value={this.state.competitioncode}
-                onChange={this.onChangeCompetitioncode}
-                />
-            <label>Competition Name: </label>
-            <input  type="text"
-                required
-                className="form-control"
-                value={this.state.name}
-                onChange={this.onChangeName}
-                />
-          </div>
-          <div className="form-group">
-            <input type="submit" value="Create Competition" className="btn btn-primary" />
-          </div>
-        </form>
+      <Container className="text-center">
+        <Row className="justify-content-center">
+          <Col>
+            <h1>HighScores.app</h1>
+          </Col>
+        </Row>
+        <Row className="justify-content-center">
+          <Col>
+            <h2>Create New Competition</h2>
+          </Col>
+        </Row>
+        <Row className="justify-content-center">
+          <Col xs={6}>
+          <form className="m-3" onSubmit={this.onSubmit}>
+            <div className="form-group"> 
+              <label>Competition Code: </label>
+              <input  type="text"
+                  required
+                  maxLength={5}
+                  placeholder="5 Characters"
+                  pattern="[A-Za-z0-9]{5}"
+                  className="form-control"
+                  value={this.state.competitioncode}
+                  onChange={this.onChangeCompetitioncode}
+                  />
+                  <br />
+              <label>Competition Name: </label>
+              <input  type="text"
+                  required
+                  className="form-control"
+                  value={this.state.name}
+                  onChange={this.onChangeName}
+                  />
+            </div>
+            <div className="form-group">
+              <input type="submit" value="Create Competition" className="btn btn-primary" />
+            </div>
+          </form>
+          </Col>
+        </Row>
       </Container>
     )
   }

@@ -48,8 +48,6 @@ export default class CompetitionPicker extends Component {
   handleLookupResponse(data) {
     if (data !== "") {
       window.sessionStorage.setItem("compName", data.name);
-      
-      // TODO: Repoint this to the Main component, with the id.
       window.location = '/c/' + data._id;
     }
   } 

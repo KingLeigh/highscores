@@ -71,6 +71,7 @@ export default class MainComponent extends Component {
               </Card.Body>
           </Card>          
         </Row>
+        <hr />
         <Row>
           <Col>
             <h2>Competition Setup</h2>
