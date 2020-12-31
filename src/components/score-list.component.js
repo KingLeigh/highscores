@@ -4,27 +4,6 @@ import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const RecentScore = props => (
-  <tr className="d-flex">
-    <td className="col-3">{props.score.username}</td>
-    <td className="col-3">{props.score.eventname}</td>
-    <td className="col-2">{props.score.score}</td>
-    <td className="col-3">{props.score.date}</td>
-    <td className="col-1">
-      <a href="#" onClick={() => { props.deleteScore(props.score._id) }}>delete</a>
-    </td>
-  </tr>
-)
-
-const LeaderScore = props => (
-  <tr className="d-flex">
-    <th scope="row" className="col-2">{props.score.rank}</th>
-    <td className="col-4">{props.score.username}</td>
-    <td className="col-3">{props.score.score}</td>
-    <td className="col-3">{props.score.date}</td>
-  </tr>
-)
-
 export default class ScoreList extends Component {
   constructor(props) {
     super(props);
@@ -220,8 +199,8 @@ export default class ScoreList extends Component {
               <th className="col-3">Player</th>
               <th className="col-3">Event</th>
               <th className="col-2">Score</th>
-              <th className="col-3">Date</th>
-              <th className="col-1">Actions</th>
+              <th className="col-2">Date</th>
+              <th className="col-2">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -237,3 +216,24 @@ export default class ScoreList extends Component {
     return this.isLeaderboard ? this.renderLeaderboard() : this.renderRecent();
   }
 }
+
+const RecentScore = props => (
+  <tr className="d-flex">
+    <td className="col-3">{props.score.username}</td>
+    <td className="col-3">{props.score.eventname}</td>
+    <td className="col-2">{props.score.score}</td>
+    <td className="col-2">{props.score.date}</td>
+    <td className="col-2">
+      <a href="#" onClick={() => { props.deleteScore(props.score._id) }}>delete</a>
+    </td>
+  </tr>
+)
+
+const LeaderScore = props => (
+  <tr className="d-flex">
+    <th scope="row" className="col-2">{props.score.rank}</th>
+    <td className="col-4">{props.score.username}</td>
+    <td className="col-3">{props.score.score}</td>
+    <td className="col-3">{props.score.date}</td>
+  </tr>
+)
