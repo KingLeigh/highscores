@@ -10,13 +10,14 @@ export default class InputScore extends Component {
     this.onChangeScore = this.onChangeScore.bind(this);
     this.processUserEventInfo = this.processUserEventInfo.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.getUserEventInfo = this.getUserEventInfo.bind(this);
 
     this.state = {
       userId: '',
       eventId: '',
       userEventAttempts: "--",
       userEventHigh: "--",      
-      score: 0,
+      score: "",
       date: new Date(),
       userObj: [],
       eventObj: [],
@@ -75,7 +76,7 @@ export default class InputScore extends Component {
   getUserEventInfo(user, event) {
     if (user == "" || event == "") {
       this.setState({
-        userEventAttempts: 0,
+        userEventAttempts: '--',
         userEventHigh: '--'
       });      
       return;
@@ -91,7 +92,7 @@ export default class InputScore extends Component {
   }
 
   processUserEventInfo(data) {
-    const attempts = data.length;
+    let attempts = data.length;
     let highScore = '--';
     if (attempts > 0) {
       highScore = 0;
@@ -110,15 +111,14 @@ export default class InputScore extends Component {
   }
 
   onSubmit(e) {
-    e.preventDefault();
+    e.preventDefault(); 
 
-    if (this.state.userId == "blank" || this.state.eventId == "blank") {
-      return;
-    }    
+    const postedUserId = this.state.userId;
+    const postedEventId = this.state.eventId;
 
     const score = {
-      userId: this.state.userId,
-      eventId: this.state.eventId,
+      userId: postedUserId,
+      eventId: postedEventId,
       score: this.state.score,
       competition: this.state.compId,
       date: new Date()
@@ -127,10 +127,10 @@ export default class InputScore extends Component {
     console.log(score);
 
     axios.post('/api/scores/add', score)
-      .then(res => console.log(res.data));
+      .then(res => this.getUserEventInfo(postedUserId, postedEventId));
 
     this.setState({
-      score: 0,
+      score: '',
     });
   }
 
@@ -184,7 +184,8 @@ export default class InputScore extends Component {
         <div className="form-group">
           <label>New Score: </label>
           <input 
-              type="text" 
+              type="text"
+              required
               className="form-control"
               value={this.state.score}
               onChange={this.onChangeScore}
