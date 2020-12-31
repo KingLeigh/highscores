@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import QueryUtil from '../util/queryutil';
 
 export default class CompetitionPicker extends Component {
   constructor(props) {
@@ -40,15 +40,19 @@ export default class CompetitionPicker extends Component {
 
     if (competitionCode.length === 5) {
       console.log("Attempting to get id for " + competitionCode);
-      axios.get('/api/competitions/lookup/' + competitionCode)
-        .then(res => this.handleLookupResponse(res.data));      
+      QueryUtil.getCompetitionByCode(competitionCode, this.handleLookupResponse);
     }
   }
 
   handleLookupResponse(data) {
-    if (data !== "") {
+    if (data) {
+      window.sessionStorage.setItem("compLoaded", true);
+      window.sessionStorage.setItem("compId", data._id);
       window.sessionStorage.setItem("compName", data.name);
+      window.sessionStorage.setItem("compCode", data.competitioncode);
       window.location = '/c/' + data._id;
+    } else {
+      // TODO: ALert that no competition was available for this.
     }
   } 
 

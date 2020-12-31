@@ -1,10 +1,9 @@
 const router = require('express').Router();
 let Competition = require('../models/competition.model');
 
-// TODO: This can be removed, we don't need a GetAll method.
-router.route('/').get((req, res) => {
-  Competition.find().sort('name')
-    .then(competitions => res.json(competitions))
+router.route('/:id').get((req, res) => {
+  Competition.findById(req.params.id)
+    .then(competition => res.json(competition))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
