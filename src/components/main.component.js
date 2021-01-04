@@ -6,8 +6,9 @@ import React, { Component } from 'react';
 import QueryUtil from '../util/queryutil';
 import HighScoreNavbar from "./highscore-navbar.component";
 import CompHome from './comp-home.component';
-import ScoreList from "./score-list.component";
+import RecentScores from "./recent-scores.component";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Leaderboard from './leaderboard.component';
 
 export default class MainComponent extends Component {
 
@@ -60,10 +61,10 @@ export default class MainComponent extends Component {
         </Row>          
         <Switch>
           <Route path="/c/:id/recent" exact render={(props) => (
-            <ScoreList {...props} listTitle="Recent Scores" byDate={true} compId={ this.state.compId } />
+            <RecentScores {...props} listTitle="Recent Scores" byDate={true} compId={ this.state.compId } />
           )} />
           <Route path="/c/:id/leaderboard/:eventId" exact render={(props) => (
-            <ScoreList {...props} compId={ this.state.compId } />
+            <Leaderboard {...props} compId={ this.state.compId } />
           )} />          
           <Route path="/c/:id" exact render={(props) => (
             <CompHome {...props} compId={ this.state.compId } compName= { this.state.compName } />
