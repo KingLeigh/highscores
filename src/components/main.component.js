@@ -3,7 +3,7 @@ import QueryUtil from '../util/queryutil';
 import HighScoreNavbar from "./highscore-navbar.component";
 import CompHome from './comp-home.component';
 import ScoreList from "./score-list.component";
-import { BrowserRouter as Router, Route, useRouteMatch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 export default class MainComponent extends Component {
 
@@ -64,18 +64,19 @@ export default class MainComponent extends Component {
     }
   }
 
-  render() {  
+  render() {
+    console.log("XYZ match.path: " + this.props.match.path);
     return (
       <div>
         <HighScoreNavbar compId={ this.state.compId } />
-        <Router>
-          <Route path="/c/:id/recent" render={(props) => (
+        <Switch>
+          <Route path="/c/:id/recent" exact render={(props) => (
             <ScoreList {...props} listTitle="Recent Scores" byDate={true} />
           )} />
           <Route path="/c/:id" exact render={(props) => (
             <CompHome {...props} compId={ this.state.compId } compName= { this.state.compName } />
           )} />          
-        </Router>
+        </Switch>
       </div>
     );
   }
