@@ -3,6 +3,7 @@ import Col from 'react-bootstrap/Col';
 import React, { Component } from 'react';
 import Row from 'react-bootstrap/Row';
 import axios from 'axios';
+import HighScoreNavbar from './highscore-navbar.component';
 
 export default class CreateCompetition extends Component {
   constructor(props) {
@@ -17,14 +18,6 @@ export default class CreateCompetition extends Component {
       name: '',
     }
   }
-
-  componentDidMount() {
-    document.getElementsByClassName("navbar-collapse")[0].style.visibility = 'hidden';
-  }
-
-  componentWillUnmount() {
-    document.getElementsByClassName("navbar-collapse")[0].style.visibility = 'visible';
-  }  
 
   onChangeCompetitioncode(e) {
     const competitionCode = e.target.value.toUpperCase();
@@ -74,47 +67,50 @@ export default class CreateCompetition extends Component {
 
   render() {
     return (
-      <Container className="text-center">
-        <Row className="justify-content-center">
-          <Col>
-            <h1>HighScores.app</h1>
-          </Col>
-        </Row>
-        <Row className="justify-content-center">
-          <Col>
-            <h2>Create New Competition</h2>
-          </Col>
-        </Row>
-        <Row className="justify-content-center">
-          <Col xs={6}>
-          <form className="m-3" onSubmit={this.onSubmit}>
-            <div className="form-group"> 
-              <label>Competition Code: </label>
-              <input  type="text"
-                  required
-                  maxLength={5}
-                  placeholder="5 Characters"
-                  pattern="[A-Za-z0-9]{5}"
-                  className="form-control"
-                  value={this.state.competitioncode}
-                  onChange={this.onChangeCompetitioncode}
-                  />
-                  <br />
-              <label>Competition Name: </label>
-              <input  type="text"
-                  required
-                  className="form-control"
-                  value={this.state.name}
-                  onChange={this.onChangeName}
-                  />
-            </div>
-            <div className="form-group">
-              <input type="submit" value="Create Competition" className="btn btn-primary" />
-            </div>
-          </form>
-          </Col>
-        </Row>
-      </Container>
+      <div>
+        <HighScoreNavbar compId="" />
+        <Container className="text-center">
+          <Row className="justify-content-center">
+            <Col>
+              <h1>HighScores.app</h1>
+            </Col>
+          </Row>
+          <Row className="justify-content-center">
+            <Col>
+              <h2>Create New Competition</h2>
+            </Col>
+          </Row>
+          <Row className="justify-content-center">
+            <Col xs={6}>
+            <form className="m-3" onSubmit={this.onSubmit}>
+              <div className="form-group"> 
+                <label>Competition Code: </label>
+                <input  type="text"
+                    required
+                    maxLength={5}
+                    placeholder="5 Characters"
+                    pattern="[A-Za-z0-9]{5}"
+                    className="form-control"
+                    value={this.state.competitioncode}
+                    onChange={this.onChangeCompetitioncode}
+                    />
+                    <br />
+                <label>Competition Name: </label>
+                <input  type="text"
+                    required
+                    className="form-control"
+                    value={this.state.name}
+                    onChange={this.onChangeName}
+                    />
+              </div>
+              <div className="form-group">
+                <input type="submit" value="Create Competition" className="btn btn-primary" />
+              </div>
+            </form>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     )
   }
 }

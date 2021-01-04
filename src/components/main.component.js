@@ -1,13 +1,9 @@
-import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';
-import CreateUser from "./create-user.component";
-import CreateEvent from "./create-event.component";
-import Col from 'react-bootstrap/Col';
-import EventPicker from "./event-picker.component";
-import InputScore from "./input-score.component";
-import Row from 'react-bootstrap/Row';
 import React, { Component } from 'react';
 import QueryUtil from '../util/queryutil';
+import HighScoreNavbar from "./highscore-navbar.component";
+import CompHome from './comp-home.component';
+import ScoreList from "./score-list.component";
+import { BrowserRouter as Router, Route, useRouteMatch } from "react-router-dom";
 
 export default class MainComponent extends Component {
 
@@ -68,54 +64,19 @@ export default class MainComponent extends Component {
     }
   }
 
-  render() {
+  render() {  
     return (
-      <Container className="text-center">
-        <Row>
-          <Col>
-            <h1>{this.state.compName}</h1>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <h2>Quick Links</h2>
-          </Col>
-        </Row>
-        <Row className="justify-content-center">
-          <Card className="m-3 p-3" style={{ width: '20rem' }}>
-            <Card.Title>View Leaderboard</Card.Title>
-              <Card.Body>
-                <EventPicker />
-              </Card.Body>
-          </Card>
-          <Card className="m-3 p-3" style={{ width: '20rem' }}>
-            <Card.Title>Record A Score</Card.Title>
-              <Card.Body>
-                <InputScore />
-              </Card.Body>
-          </Card>          
-        </Row>
-        <hr />
-        <Row>
-          <Col>
-            <h2>Competition Setup</h2>
-          </Col>
-        </Row>
-        <Row className="justify-content-center">
-          <Card className="m-3 p-3" style={{ width: '20rem' }}>
-            <Card.Title>Add New Player</Card.Title>
-              <Card.Body>
-                <CreateUser />
-              </Card.Body>
-          </Card>
-          <Card className="m-3 p-3" style={{ width: '20rem' }}>
-            <Card.Title>Add New Event</Card.Title>
-              <Card.Body>
-                <CreateEvent />
-              </Card.Body>
-          </Card>
-        </Row>        
-      </Container>
+      <div>
+        <HighScoreNavbar compId={ this.state.compId } />
+        <Router>
+          <Route path="/c/:id/recent" render={(props) => (
+            <ScoreList {...props} listTitle="Recent Scores" byDate={true} />
+          )} />
+          <Route path="/c/:id" exact render={(props) => (
+            <CompHome {...props} compId={ this.state.compId } compName= { this.state.compName } />
+          )} />          
+        </Router>
+      </div>
     );
   }
 }

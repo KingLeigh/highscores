@@ -18,20 +18,6 @@ export default class CompetitionPicker extends Component {
     }
   }
 
-  componentDidMount() {
-    const hideableElements = document.getElementsByClassName("hide-on-home");
-    for (let i = 0; i < hideableElements.length; i++) {
-      hideableElements[i].style.visibility = 'hidden';
-    }
-  }
-
-  componentWillUnmount() {
-    const hideableElements = document.getElementsByClassName("hide-on-home");
-    for (let i = 0; i < hideableElements.length; i++) {
-      hideableElements[i].style.visibility = 'visible';
-    }
-  }
-
   onChangeCompetitioncode(e) {
     const competitionCode = e.target.value.toUpperCase();
     this.setState({
@@ -90,7 +76,7 @@ export default class CompetitionPicker extends Component {
               <Card.Text>
                 Want to start collecting scores for a brand new set of events?
               </Card.Text>
-              <Button variant="primary" as={Link} to="/new-competition">Click Here</Button>
+              <Button variant="primary" as={Link} to="/new">Click Here</Button>
             </Card.Body>
           </Card>
         </Row>
