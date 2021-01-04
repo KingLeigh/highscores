@@ -26,7 +26,7 @@ export default class InputScore extends Component {
   }
 
   componentDidMount() {
-    const compId = window.sessionStorage.getItem("compId");
+    const compId = this.props.compId;
     this.setState({
       compId: compId
     });

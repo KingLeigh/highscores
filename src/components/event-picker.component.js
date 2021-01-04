@@ -16,7 +16,7 @@ export default class EventPicker extends Component {
   }
 
   componentDidMount() {
-    const compId = window.sessionStorage.getItem("compId");
+    const compId = this.props.compId;
 
     // Populate the event states
     axios.get('/api/events/' + compId)
@@ -70,7 +70,7 @@ export default class EventPicker extends Component {
           </div>
 
           <div className="form-group">
-            <Button variant="secondary" href="/recent">View/Edit All</Button>
+            <Button variant="secondary" href={"/c/" + this.props.compId + "/recent"}>View/Edit All</Button>
           </div>
         </form>
         

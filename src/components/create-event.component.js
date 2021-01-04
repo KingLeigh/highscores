@@ -15,8 +15,7 @@ export default class CreateEvent extends Component {
   }
 
   componentDidMount() {
-    const compId = window.sessionStorage.getItem("compId");
-    console.log("Create event page. CompId = " + compId);
+    const compId = this.props.compId;
     this.setState({
       compId: compId
     });

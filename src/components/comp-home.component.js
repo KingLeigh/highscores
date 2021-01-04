@@ -13,47 +13,11 @@ export default class CompHome extends Component {
   constructor(props) {
     super(props);
 
-    this.handleCompResponse = this.handleCompResponse.bind(this);
-
-    // const urlCompId = this.props.match.params.id;
-    // const compLoaded = window.sessionStorage.getItem("compLoaded");
-    // let compId;
-    // let compName;
-    // if (urlCompId) {
-    //   compId = urlCompId;
-
-    //   if (!compLoaded || window.sessionStorage.getItem("compId") != compId) {
-    //     // Comp not loaded, or changed via url - load it by id.
-    //     QueryUtil.getCompetitionById(compId, this.handleCompResponse);
-    //   }
-    // } else if (compLoaded) {
-    //   compId = window.sessionStorage.getItem("compId");
-    //   compName = window.sessionStorage.getItem("compName");
-    // } else {
-    //   // Unable to determine competition, go home.
-    //   window.location = '/';
-    // }
-
     this.state = {
       compId: this.props.compId,
       compName: this.props.compName,
     }
   }
-
-  handleCompResponse(data) {
-    if (data) {
-      window.sessionStorage.setItem("compLoaded", true);
-      window.sessionStorage.setItem("compId", data._id);
-      window.sessionStorage.setItem("compName", data.name);
-      window.sessionStorage.setItem("compCode", data.competitioncode);
-      this.setState({
-        compName: data.name,
-      });
-    } else {
-      // Unable to determine competition, go home.
-      window.location = '/';
-    }
-  } 
 
   componentDidMount() {
     // Check whether we already have the comp info, e.g from the landing page.
@@ -84,13 +48,13 @@ export default class CompHome extends Component {
           <Card className="m-3 p-3" style={{ width: '20rem' }}>
             <Card.Title>View Leaderboard</Card.Title>
               <Card.Body>
-                <EventPicker />
+                <EventPicker compId={this.state.compId}/>
               </Card.Body>
           </Card>
           <Card className="m-3 p-3" style={{ width: '20rem' }}>
             <Card.Title>Record A Score</Card.Title>
               <Card.Body>
-                <InputScore />
+                <InputScore compId={this.state.compId} />
               </Card.Body>
           </Card>          
         </Row>
@@ -104,13 +68,13 @@ export default class CompHome extends Component {
           <Card className="m-3 p-3" style={{ width: '20rem' }}>
             <Card.Title>Add New Player</Card.Title>
               <Card.Body>
-                <CreateUser />
+                <CreateUser compId={this.state.compId} />
               </Card.Body>
           </Card>
           <Card className="m-3 p-3" style={{ width: '20rem' }}>
             <Card.Title>Add New Event</Card.Title>
               <Card.Body>
-                <CreateEvent />
+                <CreateEvent compId={this.state.compId} />
               </Card.Body>
           </Card>
         </Row>        

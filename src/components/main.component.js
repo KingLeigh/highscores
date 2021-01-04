@@ -12,6 +12,7 @@ export default class MainComponent extends Component {
 
     this.handleCompResponse = this.handleCompResponse.bind(this);
 
+    // Load the competition ID specified in the URL, using the lookup cache if possible.
     const urlCompId = this.props.match.params.id;
     const compLoaded = window.sessionStorage.getItem("compLoaded");
     let compId;
@@ -44,6 +45,7 @@ export default class MainComponent extends Component {
       window.sessionStorage.setItem("compName", data.name);
       window.sessionStorage.setItem("compCode", data.competitioncode);
       this.setState({
+        compId: data._id,
         compName: data.name,
       });
     } else {
@@ -65,13 +67,12 @@ export default class MainComponent extends Component {
   }
 
   render() {
-    console.log("XYZ match.path: " + this.props.match.path);
     return (
       <div>
         <HighScoreNavbar compId={ this.state.compId } />
         <Switch>
           <Route path="/c/:id/recent" exact render={(props) => (
-            <ScoreList {...props} listTitle="Recent Scores" byDate={true} />
+            <ScoreList {...props} listTitle="Recent Scores" byDate={true} compId={ this.state.compId } />
           )} />
           <Route path="/c/:id" exact render={(props) => (
             <CompHome {...props} compId={ this.state.compId } compName= { this.state.compName } />
