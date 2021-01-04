@@ -13,23 +13,11 @@ export default class MainComponent extends Component {
     this.handleCompResponse = this.handleCompResponse.bind(this);
 
     // Load the competition ID specified in the URL, using the lookup cache if possible.
-    const urlCompId = this.props.match.params.id;
-    const compLoaded = window.sessionStorage.getItem("compLoaded");
-    let compId;
-    let compName;
-    if (urlCompId) {
-      compId = urlCompId;
-
-      if (!compLoaded || window.sessionStorage.getItem("compId") != compId) {
-        // Comp not loaded, or changed via url - load it by id.
-        QueryUtil.getCompetitionById(compId, this.handleCompResponse);
-      }
-    } else if (compLoaded) {
-      compId = window.sessionStorage.getItem("compId");
-      compName = window.sessionStorage.getItem("compName");
-    } else {
-      // Unable to determine competition, go home.
-      window.location = '/';
+    const compId = this.props.match.params.id;
+    const compName = QueryUtil.getCachedCompetitionName(compId);
+    if (!compName) {
+      // Go find the comp name, so we have it available.
+      QueryUtil.getCompetitionById(compId, this.handleCompResponse);
     }
 
     this.state = {
@@ -40,12 +28,8 @@ export default class MainComponent extends Component {
 
   handleCompResponse(data) {
     if (data) {
-      window.sessionStorage.setItem("compLoaded", true);
-      window.sessionStorage.setItem("compId", data._id);
-      window.sessionStorage.setItem("compName", data.name);
-      window.sessionStorage.setItem("compCode", data.competitioncode);
+      QueryUtil.cacheCompetitionName(data._id, data.name);
       this.setState({
-        compId: data._id,
         compName: data.name,
       });
     } else {
@@ -55,15 +39,9 @@ export default class MainComponent extends Component {
   } 
 
   componentDidMount() {
-    // Check whether we already have the comp info, e.g from the landing page.
-    const compName = window.sessionStorage.getItem("compName");
-    if (compName) {
-      this.setState({
-        compName: compName,
-      });
-    } else {
-      console.log("XYZ No comp name available, need to look it up and save it!");
-    }
+    this.setState({
+      compName: QueryUtil.getCachedCompetitionName(this.state.compId),
+    });
   }
 
   render() {

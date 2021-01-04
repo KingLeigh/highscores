@@ -32,10 +32,7 @@ export default class CompetitionPicker extends Component {
 
   handleLookupResponse(data) {
     if (data) {
-      window.sessionStorage.setItem("compLoaded", true);
-      window.sessionStorage.setItem("compId", data._id);
-      window.sessionStorage.setItem("compName", data.name);
-      window.sessionStorage.setItem("compCode", data.competitioncode);
+      QueryUtil.cacheCompetitionName(data._id, data.name);
       window.location = '/c/' + data._id;
     } else {
       // TODO: ALert that no competition was available for this.

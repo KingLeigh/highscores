@@ -11,4 +11,12 @@ export default class QueryUtil {
     axios.get('/api/competitions/' + id)
         .then(res => callbackFn(res.data));
   }
+
+  static cacheCompetitionName(id, name) {
+    window.sessionStorage.setItem("compIdToName_" + id, name);
+  }
+
+  static getCachedCompetitionName(id) {
+    return window.sessionStorage.getItem("compIdToName_" + id);
+  }  
 }
