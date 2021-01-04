@@ -14,31 +14,13 @@ export default class CompHome extends Component {
     super(props);
 
     this.state = {
-      compId: this.props.compId,
-      compName: this.props.compName,
-    }
-  }
-
-  componentDidMount() {
-    // Check whether we already have the comp info, e.g from the landing page.
-    const compName = window.sessionStorage.getItem("compName");
-    if (compName) {
-      this.setState({
-        compName: compName,
-      });
-    } else {
-      console.log("XYZ No comp name available, need to look it up and save it!");
+      compId: this.props.compId
     }
   }
 
   render() {
     return (
-      <Container className="text-center">
-        <Row>
-          <Col>
-            <h1>{this.state.compName}</h1>
-          </Col>
-        </Row>
+      <div>
         <Row>
           <Col>
             <h2>Quick Links</h2>
@@ -78,7 +60,7 @@ export default class CompHome extends Component {
               </Card.Body>
           </Card>
         </Row>        
-      </Container>
+      </div>
     );
   }
 }

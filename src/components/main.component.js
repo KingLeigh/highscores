@@ -1,3 +1,7 @@
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+
 import React, { Component } from 'react';
 import QueryUtil from '../util/queryutil';
 import HighScoreNavbar from "./highscore-navbar.component";
@@ -48,6 +52,12 @@ export default class MainComponent extends Component {
     return (
       <div>
         <HighScoreNavbar compId={ this.state.compId } />
+        <Container className="text-center">
+        <Row>
+          <Col>
+            <h1>{this.state.compName}</h1>
+          </Col>
+        </Row>          
         <Switch>
           <Route path="/c/:id/recent" exact render={(props) => (
             <ScoreList {...props} listTitle="Recent Scores" byDate={true} compId={ this.state.compId } />
@@ -59,6 +69,7 @@ export default class MainComponent extends Component {
             <CompHome {...props} compId={ this.state.compId } compName= { this.state.compName } />
           )} />          
         </Switch>
+        </Container>
       </div>
     );
   }
