@@ -74,7 +74,7 @@ export default class InputScore extends Component {
   }
 
   getUserEventInfo(user, event) {
-    if (user == "" || event == "") {
+    if (user === "" || event === "") {
       this.setState({
         userEventAttempts: '--',
         userEventHigh: '--'

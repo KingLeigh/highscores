@@ -7,7 +7,7 @@ import QueryUtil from '../util/queryutil';
 import HighScoreNavbar from "./highscore-navbar.component";
 import CompHome from './comp-home.component';
 import RecentScores from "./recent-scores.component";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Leaderboard from './leaderboard.component';
 
 export default class MainComponent extends Component {

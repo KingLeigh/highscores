@@ -7,8 +7,7 @@ export default class HighScoreNavbar extends Component {
 
   render() {
     const compId = this.props.compId;
-    console.log("XYZ navbar compId: " + compId);
-    if (compId != "") {
+    if (compId !== "") {
       return this.getCompNav(compId);
     } else {
       return this.getRootNav();

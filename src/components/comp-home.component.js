@@ -1,4 +1,3 @@
-import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import CreateUser from "./create-user.component";
 import CreateEvent from "./create-event.component";

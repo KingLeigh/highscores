@@ -133,21 +133,23 @@ export default class RecentScores extends Component {
     return (
       <div>      
         <h2>Recent Scores</h2>
-        <table className="table table-striped mt-3">
-          <thead className="thead-light">
-            <tr className="d-flex">
-              <th className="col-3">Player</th>
-              <th className="col-3">Event</th>
-              <th className="col-2">Score</th>
-              <th className="col-2">Date</th>
-              <th className="col-2">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            { this.scoreList() }
-          </tbody>
-          <caption>Last updated: { this.state.lastUpdated.toLocaleString() }</caption>          
-        </table>
+        <Row>
+          <table className="table table-striped mt-3">
+            <thead className="thead-light">
+              <tr className="d-flex">
+                <th className="col-3">Player</th>
+                <th className="col-3">Event</th>
+                <th className="col-2">Score</th>
+                <th className="col-2">Date</th>
+                <th className="col-2">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              { this.scoreList() }
+            </tbody>
+            <caption>Last updated: { this.state.lastUpdated.toLocaleString() }</caption>          
+          </table>
+        </Row>
       </div>
     )
   }
