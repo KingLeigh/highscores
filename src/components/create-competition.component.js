@@ -57,9 +57,7 @@ export default class CreateCompetition extends Component {
 
   handleCreateResponse(data) {
     if (data !== "") {
-      console.log("Found id" + data._id);
-      window.sessionStorage.setItem("compId", data._id);
-      window.location = '/event';
+      window.location = '/c/' + data._id;
     } else {
       console.log("No competition found.");
     }
