@@ -9,7 +9,7 @@ export default class ScoreList extends Component {
     super(props);
 
     this.isLeaderboard = !props.byDate;
-    this.eventToShow = this.props.match.params.id;
+    this.eventToShow = this.props.match.params.eventId;
 
     this.deleteScore = this.deleteScore.bind(this);
     this.getNameFromId = this.getNameFromId.bind(this);
@@ -41,7 +41,7 @@ export default class ScoreList extends Component {
   }  
 
   componentDidMount() {
-    const compId = window.sessionStorage.getItem("compId"); 
+    const compId = this.props.compId; 
     this.setState({
       compName: window.sessionStorage.getItem("compName")
     });       
@@ -89,7 +89,7 @@ export default class ScoreList extends Component {
 
   updateScores() {
     // Fetch the scores object
-    axios.get('/api/scores/comp/' + window.sessionStorage.getItem("compId"))
+    axios.get('/api/scores/comp/' + this.props.compId)
       .then(response => {
         this.setState({ 
           scores: response.data,

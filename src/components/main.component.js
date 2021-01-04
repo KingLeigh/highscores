@@ -74,6 +74,9 @@ export default class MainComponent extends Component {
           <Route path="/c/:id/recent" exact render={(props) => (
             <ScoreList {...props} listTitle="Recent Scores" byDate={true} compId={ this.state.compId } />
           )} />
+          <Route path="/c/:id/leaderboard/:eventId" exact render={(props) => (
+            <ScoreList {...props} compId={ this.state.compId } />
+          )} />          
           <Route path="/c/:id" exact render={(props) => (
             <CompHome {...props} compId={ this.state.compId } compName= { this.state.compName } />
           )} />          

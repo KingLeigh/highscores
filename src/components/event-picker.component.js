@@ -42,7 +42,7 @@ export default class EventPicker extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    window.location = '/leaderboard/' + this.state.eventId;
+    window.location = '/c/' + this.props.compId + '/leaderboard/' + this.state.eventId;
   }
 
   render() {
