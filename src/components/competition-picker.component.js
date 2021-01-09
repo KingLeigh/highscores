@@ -56,7 +56,7 @@ export default class CompetitionPicker extends Component {
                 Enter your Competition Code to load an existing set of players, scores and leaderboards.
               </Card.Text>
               <div className="form-group">
-                <input  type="text"
+                <input type="text"
                         className="form-control input-lg"
                         size="5"
                         placeholder="Competition Code"

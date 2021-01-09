@@ -16,8 +16,9 @@ router.route('/lookup/:code').get((req, res) => {
 router.route('/add').post((req, res) => {
   const competitioncode = req.body.competitioncode;
   const name = req.body.name;
+  const adminPin = req.body.adminPin > 0 ? req.body.adminPin : null;
 
-  const newCompetition = new Competition({competitioncode, name});
+  const newCompetition = new Competition({competitioncode, name, adminPin});
 
   newCompetition.save()
     .then(() => res.json(newCompetition))

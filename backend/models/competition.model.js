@@ -15,7 +15,8 @@ const competitionSchema = new Schema({
     required: true,
     trim: true,
     minlength: 3
-  }
+  },
+  adminPin: Number,
 }, {
   timestamps: true,
 });

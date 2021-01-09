@@ -10,12 +10,14 @@ export default class CreateCompetition extends Component {
     super(props);
 
     this.onChangeCompetitioncode = this.onChangeCompetitioncode.bind(this);
-    this.onChangeName = this.onChangeName.bind(this);    
+    this.onChangeName = this.onChangeName.bind(this);
+    this.onChangeAdminPin = this.onChangeAdminPin.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       competitioncode: '',
       name: '',
+      adminPin: '',
     }
   }
 
@@ -30,7 +32,13 @@ export default class CreateCompetition extends Component {
     this.setState({
       name: e.target.value
     })
-  }  
+  }
+
+  onChangeAdminPin(e) {
+    this.setState({
+      adminPin: e.target.value
+    })
+  }
 
   onSubmit(e) {
     e.preventDefault();
@@ -38,6 +46,7 @@ export default class CreateCompetition extends Component {
     const competition = {
       competitioncode: this.state.competitioncode,
       name: this.state.name,
+      adminPin: this.state.adminPin,
     }
 
     console.log(competition);
@@ -83,7 +92,7 @@ export default class CreateCompetition extends Component {
             <form className="m-3" onSubmit={this.onSubmit}>
               <div className="form-group"> 
                 <label>Competition Code: </label>
-                <input  type="text"
+                <input type="text"
                     required
                     maxLength={5}
                     placeholder="5 Characters"
@@ -92,13 +101,25 @@ export default class CreateCompetition extends Component {
                     value={this.state.competitioncode}
                     onChange={this.onChangeCompetitioncode}
                     />
-                    <br />
+              </div>
+              <div className="form-group">
                 <label>Competition Name: </label>
-                <input  type="text"
+                <input type="text"
                     required
                     className="form-control"
                     value={this.state.name}
                     onChange={this.onChangeName}
+                    />
+              </div>
+              <div className="form-group">
+                <label>Admin PIN (Optional): </label>
+                <input type="text"
+                    placeholder="4 Digits"
+                    maxLength={4}
+                    pattern="[0-9]{4}"
+                    className="form-control"
+                    value={this.state.adminPin}
+                    onChange={this.onChangeAdminPin}
                     />
               </div>
               <div className="form-group">
