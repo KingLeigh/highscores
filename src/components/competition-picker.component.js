@@ -13,6 +13,7 @@ export default class CompetitionPicker extends Component {
 
     this.onChangeCompetitioncode = this.onChangeCompetitioncode.bind(this);
     this.onChangePin = this.onChangePin.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       competitioncode: '',
@@ -36,9 +37,9 @@ export default class CompetitionPicker extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    if (this.state.competitionCode.length === 5) {
+    if (this.state.competitioncode.length === 5) {
       QueryUtil.getCompetitionByCode(
-        this.state.competitionCode, this.state.pin, this.handleLookupResponse);
+        this.state.competitioncode, this.state.pin, this.handleLookupResponse);
     }    
   }
 
@@ -71,7 +72,7 @@ export default class CompetitionPicker extends Component {
                 <div className="form-group">
                   <input type="text"
                           className="form-control input-lg"
-                          size="5"
+                          maxLength={5}
                           placeholder="Competition Code"
                           value={this.state.competitioncode}
                           onChange={this.onChangeCompetitioncode}
