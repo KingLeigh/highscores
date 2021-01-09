@@ -12,9 +12,11 @@ export default class CompetitionPicker extends Component {
     super(props);
 
     this.onChangeCompetitioncode = this.onChangeCompetitioncode.bind(this);
+    this.onChangePin = this.onChangePin.bind(this);
 
     this.state = {
       competitioncode: '',
+      pin: '',
     }
   }
 
@@ -23,11 +25,21 @@ export default class CompetitionPicker extends Component {
     this.setState({
       competitioncode: competitionCode
     })
+  }
 
-    if (competitionCode.length === 5) {
-      console.log("Attempting to get id for " + competitionCode);
-      QueryUtil.getCompetitionByCode(competitionCode, this.handleLookupResponse);
-    }
+  onChangePin(e) {
+    this.setState({
+      pin: e.target.value
+    })
+  }  
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    if (this.state.competitionCode.length === 5) {
+      QueryUtil.getCompetitionByCode(
+        this.state.competitionCode, this.state.pin, this.handleLookupResponse);
+    }    
   }
 
   handleLookupResponse(data) {
@@ -55,15 +67,31 @@ export default class CompetitionPicker extends Component {
               <Card.Text>
                 Enter your Competition Code to load an existing set of players, scores and leaderboards.
               </Card.Text>
-              <div className="form-group">
-                <input type="text"
-                        className="form-control input-lg"
-                        size="5"
-                        placeholder="Competition Code"
-                        value={this.state.competitioncode}
-                        onChange={this.onChangeCompetitioncode}
+              <form onSubmit={this.onSubmit}>
+                <div className="form-group">
+                  <input type="text"
+                          className="form-control input-lg"
+                          size="5"
+                          placeholder="Competition Code"
+                          value={this.state.competitioncode}
+                          onChange={this.onChangeCompetitioncode}
+                          />
+                </div>
+                <div className="form-group">
+                  <label>PIN Code (Optional): </label>
+                    <input type="text"
+                        placeholder="4 Digits"
+                        maxLength={4}
+                        pattern="[0-9]{4}"
+                        className="form-control"
+                        value={this.state.pinCode}
+                        onChange={this.onChangePin}
                         />
-              </div>
+                </div>
+                <div className="form-group">
+                  <input type="submit" value="Load" className="btn btn-primary" />
+                </div>
+              </form>
             </Card.Body>
           </Card>
           <Card className="m-3 p-3" style={{ width: '20rem' }}>

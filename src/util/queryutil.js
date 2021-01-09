@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default class QueryUtil {
 
-  static getCompetitionByCode(code, callbackFn) {
+  static getCompetitionByCode(code, pin, callbackFn) {
     axios.get('/api/competitions/lookup/' + code)
         .then(res => callbackFn(res.data));
   }
