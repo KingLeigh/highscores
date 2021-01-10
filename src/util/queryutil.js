@@ -3,7 +3,8 @@ import axios from 'axios';
 export default class QueryUtil {
 
   static getCompetitionByCode(code, pin, callbackFn) {
-    axios.get('/api/competitions/lookup/' + code)
+    const pinQueryString = pin.length > 0 ? `?p=${pin}` : '';
+    axios.get('/api/competitions/lookup/' + code + pinQueryString)
         .then(res => callbackFn(res.data));
   }
 
