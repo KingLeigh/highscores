@@ -2,6 +2,7 @@ import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
+import Jumbotron from 'react-bootstrap/Jumbotron';
 import Row from 'react-bootstrap/Row';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
@@ -50,25 +51,29 @@ export default class CompetitionPicker extends Component {
     } else {
       // TODO: ALert that no competition was available for this.
     }
-  } 
+  }
 
   render() {
     return (
-      <Container className="text-center">
-        <Row className="justify-content-center">
+      <div>
+      <Jumbotron>
+        <Container>
+          <h1>HighScores<span class="text-muted">.app</span></h1>
+          <p>
+            A free, lightweight system for managing competitions. Configure teams and players; 
+            add events; record scores and display auto-updating leaderboards. All with just a couple of clicks.   
+          </p>
+          <p>
+            <Button variant="primary" as={Link} to="/new" size="lg">Get started</Button>
+          </p>
+        </Container>
+      </Jumbotron>
+      <Container>
+        <Row>
           <Col>
-            <h1>HighScores<span class="text-muted">.app</span></h1>
-          </Col>
-        </Row>
-        <Row className="justify-content-center">
-          <Card className="m-3 p-3" style={{ width: '20rem' }}>
-            <Card.Img variant="top" src="../img/card-placeholder.svg" />
-            <Card.Body>
-              <Card.Title>Load Existing Competition</Card.Title>
-              <Card.Text>
-                Enter your Competition Code to load an existing set of players, scores and leaderboards.
-              </Card.Text>
-              <form onSubmit={this.onSubmit}>
+            <h2>Load Existing</h2>
+            <p>Enter your Competition Code to load an existing set of players, scores and leaderboards.</p>
+            <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                   <input type="text"
                           className="form-control input-lg"
@@ -79,34 +84,33 @@ export default class CompetitionPicker extends Component {
                           />
                 </div>
                 <div className="form-group">
-                  <label>PIN Code (Optional): </label>
-                    <input type="text"
-                        placeholder="4 Digits"
-                        maxLength={4}
-                        pattern="[0-9]{4}"
-                        className="form-control"
-                        value={this.state.pinCode}
-                        onChange={this.onChangePin}
-                        />
+                  <input type="text"
+                      placeholder="PIN"
+                      maxLength={4}
+                      pattern="[0-9]{4}"
+                      className="form-control"
+                      value={this.state.pinCode}
+                      onChange={this.onChangePin}
+                      />
+                  <small class="form-text text-muted">Optional</small>
+  
                 </div>
                 <div className="form-group">
-                  <input type="submit" value="Load" className="btn btn-primary" />
+                  <input type="submit" value="Let's Go" className="btn btn-primary btn-block" />
                 </div>
               </form>
-            </Card.Body>
-          </Card>
-          <Card className="m-3 p-3" style={{ width: '20rem' }}>
-            <Card.Img variant="top" src="../img/card-placeholder.svg" />
-            <Card.Body>
-              <Card.Title>Create New Competition</Card.Title>
-              <Card.Text>
-                Want to start collecting scores for a brand new set of events?
-              </Card.Text>
-              <Button variant="primary" as={Link} to="/new">Click Here</Button>
-            </Card.Body>
-          </Card>
+          </Col>
+          <Col>
+            <h2>Create New</h2>
+            <p>Want to start collecting scores for a brand new set of events?</p>
+            <Button variant="primary" as={Link} to="/new" block>Get Started</Button>
+          </Col>
+          <Col>
+          <h3>"Losers focus on winners. Winners focus on winning."</h3>
+          </Col>
         </Row>
       </Container>
+      </div>
     )
   }
 }
