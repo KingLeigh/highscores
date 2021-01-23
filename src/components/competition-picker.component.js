@@ -57,7 +57,7 @@ export default class CompetitionPicker extends Component {
       <Container className="text-center">
         <Row className="justify-content-center">
           <Col>
-            <h1>HighScores.app</h1>
+            <h1>HighScores<span class="text-muted">.app</span></h1>
           </Col>
         </Row>
         <Row className="justify-content-center">

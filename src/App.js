@@ -1,5 +1,6 @@
 import React from 'react';
-import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootswatch/dist/lux/bootstrap.min.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import CreateCompetition from "./components/create-competition.component";

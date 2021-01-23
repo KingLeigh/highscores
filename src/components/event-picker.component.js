@@ -66,11 +66,11 @@ export default class EventPicker extends Component {
             </select>
           </div>
           <div className="form-group">
-            <input type="submit" value="Show Board" className="btn btn-primary" />
+            <Button variant="primary" type="submit" block>Show Board</Button>
           </div>
 
           <div className="form-group">
-            <Button variant="secondary" href={"/c/" + this.props.compId + "/recent"}>View/Edit All</Button>
+            <Button variant="outline-secondary" href={"/c/" + this.props.compId + "/recent"}>View/Edit All</Button>
           </div>
         </form>
         

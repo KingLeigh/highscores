@@ -9,6 +9,7 @@
     "axiom": "^0.1.6",
     "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
+    "bootswatch": "^4.6.0",
     "concurrently": "^5.3.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
