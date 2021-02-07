@@ -19,5 +19,13 @@ export default class QueryUtil {
 
   static getCachedCompetitionName(id) {
     return window.sessionStorage.getItem("compIdToName_" + id);
-  }  
+  }
+
+  static cacheCompetitionPermission(id, permission) {
+    window.sessionStorage.setItem("compIdToPermission_" + id, permission);
+  }
+
+  static getCachedCompetitionPermission(id) {
+    return window.sessionStorage.getItem("compIdToPermission_" + id);
+  }
 }

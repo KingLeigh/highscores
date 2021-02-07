@@ -47,6 +47,7 @@ export default class CompetitionPicker extends Component {
   handleLookupResponse(data) {
     if (data) {
       QueryUtil.cacheCompetitionName(data._id, data.name);
+      QueryUtil.cacheCompetitionPermission(data._id, data.permission);
       window.location = '/c/' + data._id;
     } else {
       // TODO: ALert that no competition was available for this.
