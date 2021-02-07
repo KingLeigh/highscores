@@ -2,8 +2,9 @@ const router = require('express').Router();
 let Competition = require('../models/competition.model');
 
 router.route('/:id').get((req, res) => {
+  const pin = req.query.p || null;
   Competition.findById(req.params.id)
-    .then(competition => res.json(competition))
+    .then(competition => res.json(processCompetitionForReturn(competition.toObject(), pin)))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
